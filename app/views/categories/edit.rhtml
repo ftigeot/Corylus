@@ -1,0 +1,14 @@
+<h1>Editing category</h1>
+
+<%= error_messages_for 'category' %>
+<!--[form:category]-->
+<%= start_form_tag :action => 'update' %>
+<%= hidden_field 'category', 'id' %>
+<p><label for="category_description">Description</label><br /><%= text_field 'category', 'description'  %></p>
+<input type="submit" value="Update" />
+<%= end_form_tag %>
+<!--[eoform:category]-->
+
+
+<%= link_to 'Show', :action => 'show', :id => @category.id %> |
+<%= link_to 'Back', :action => 'list' %>

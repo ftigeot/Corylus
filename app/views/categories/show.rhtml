@@ -1,0 +1,8 @@
+<% for column in Category.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%= @category.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @category.id %> |
+<%= link_to 'Back', :action => 'list' %>
