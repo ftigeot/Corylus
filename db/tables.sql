@@ -1,5 +1,5 @@
 -- Corylus - ERP software
--- Copyright (c) 2005-2013 François Tigeot
+-- Copyright (c) 2005-2014 François Tigeot
 
 -- We need to define all tables before checking foreign keys
 START TRANSACTION;
@@ -197,7 +197,7 @@ create table quotations (
 	created_on	date NOT NULL default now(),
 	updated_on	date NOT NULL default now(),
 	shipping	decimal(5,2) default NULL,
-	shipping_tr	decimal(3,1) NOT NULL DEFAULT 19.6,
+	shipping_tr	decimal(3,1) NOT NULL DEFAULT 20.0,
 	user_id		integer NOT NULL REFERENCES users(id) DEFERRABLE,
 	remark		text
 );
@@ -273,7 +273,7 @@ create table supplier_orders (
 	shipping_address_id	integer NOT NULL REFERENCES addresses(id),
 	created_on		date NOT NULL default now(),
 	shipping		decimal(5,2) default NULL,
-	shipping_tr		decimal(3,1) NOT NULL DEFAULT 19.6,
+	shipping_tr		decimal(3,1) NOT NULL DEFAULT 20.0,
 	remark			text
 );
 

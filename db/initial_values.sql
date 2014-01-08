@@ -16,14 +16,15 @@ INSERT INTO settings(name,value) VALUES ('billing_address_id', 1);
 INSERT INTO settings(name,value) VALUES ('bic', 'BNPAFRPPMEE');
 INSERT INTO settings(name,value) VALUES ('iban', 'FR76 1234 5678 9101 1121 3141 516');
 
--- VAT rates for France in 2010
+-- VAT rates for France in 2014
 -- The first line is for special non-taxable items (stamps come to mind)
 INSERT INTO vat_rates(rate) VALUES (0.0);
 INSERT INTO vat_rates(rate) VALUES (2.1);
 INSERT INTO vat_rates(rate) VALUES (5.5);
-INSERT INTO vat_rates(rate) VALUES (19.6);
+INSERT INTO vat_rates(rate) VALUES (10.0);
+INSERT INTO vat_rates(rate) VALUES (20.0);
 INSERT INTO settings(name,value) VALUES ('default_vat_rate_id',
-	(SELECT id from vat_rates where rate = 19.6)
+	(SELECT id from vat_rates where rate = 20.0)
 );
 
 COMMIT;
