@@ -1,0 +1,288 @@
+body { margin: 0; }
+
+div#sidebar {
+	float: left;
+	width: 120px;
+	height: 100%;
+	font-size:	0.8em;
+	position: fixed;
+	background-color: #f8e7a1;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-right: 1px solid black;
+}
+
+div#sidebar a {
+	text-decoration: none;
+	display: block;
+	padding-left: 4pt;
+	padding-top: 1pt;
+	padding-bottom: 1pt;
+}
+
+#sidebar a:hover {
+	color: #000;
+	background-color: #f4d090;
+}
+
+#sidebar ul {
+	list-style: none;
+	padding: 0;
+	border: 1px solid grey;
+}
+#sidebar ul li input {
+	color: #bbb;
+}
+
+div#topbar {
+	background-color: #f8e7a1;
+	border:	1px solid black;
+	padding: 2px;
+}
+
+div#content {
+	float: left;
+	margin-left: 144px;
+}
+
+table.quotation {
+	width: 20cm;
+	border: thin solid black;
+}
+
+table.quotation td {
+	text-align: right;
+}
+
+table.quotation td.name {
+	text-align: left;
+}
+
+table.quotation th, table.borders th {
+	font-weight: bold;
+	border-bottom: thin solid black;
+}
+
+table.total {
+	position: relative;
+	top: 1cm;
+	border: thin solid black;
+	width: 6cm;
+	height: 2cm;
+	float: right;
+	text-align: right;
+}
+
+table.option_values {
+	width: 18cm;
+	margin-left: 1cm;
+}
+
+table.borders {
+	border-collapse: collapse;
+	min-width: 18cm;
+	border: 2px solid black;
+}
+
+table.option_values td {
+	border-bottom: thin solid black;
+}
+
+td {
+	padding-left: 2mm;
+	padding-right: 2mm;
+}
+
+td.grey, td.price {
+	background-color: #eee;
+	text-align: right;
+}
+
+td.price { width: 2cm; }
+
+table.option_values tr:hover {
+	background-color: #fff0b0;
+}
+
+table.option_values tr:hover td.price {
+	background-color: #fff0b0;
+}
+
+table.quotation td.grey { width: 2cm; }
+
+td.name {
+	vertical-align: top;
+}
+
+td.left {
+	text-align: left;
+	padding-left: 0;
+}
+
+table.borders tr td {
+	padding-top: 8px;
+}
+
+table.borders tr.border {
+	border-bottom: 2px solid black;
+}
+
+table.borders tr.border td {
+	padding-top: 0;
+	background-color: transparent;
+}
+
+td.left b {
+	display: block;
+	text-align: left;
+}
+
+td.right {
+	text-align: right;
+	padding-right: 0;
+}
+
+tr.product, tr.product td input {
+	background-color: #fff0d0;
+	color: orange;
+}
+
+tr.option_line {
+	background-color: #e8e8ff;
+}
+
+div#quotation {
+	width: 18cm;
+}
+div#quotationfix {
+	height: 3cm;
+}
+
+.dark { background-color: #e0e0f8; }
+.light { background-color: #f8f8f8; }
+.dark_red { background-color: #f8e0e0; }
+
+#notice {
+	color: blue;
+}
+
+#error {
+	color: red;
+}
+
+div.vspacing {
+	clear: left;
+}
+
+div.left {
+	float: left;
+	margin-right: 20px;
+}
+div.left img {
+	border: thin solid black;
+	margin-top: 1em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+div.box {
+	background-color: #f0f0f8;
+	border:	1px solid black;
+	margin-top: 1em;
+	width: 18cm;
+}
+
+div.box h2 {
+	background-color:	#e8b860;
+	background-color:	#f8c890;
+	font-size:			12pt;
+	text-align:			left;
+	padding:			0.5em;
+	margin:				0;
+	border-bottom:		1px solid #4d4d4d;
+}
+
+div.box p {
+	padding: 0.5em;
+	margin: 0;
+	white-space: -moz-pre-wrap; /* FIXME: Seamonkey 1.x */
+	white-space: pre-line;
+}
+
+div.remark {
+	margin-top: 1cm;
+	margin-bottom: 0.5em;
+	padding-left: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	border: 1px solid black;
+	width: 10cm;
+}
+
+div.remark textarea {
+	background-color: #f0f0f8;
+}
+
+tr.default_value {
+	font-weight: bold;
+}
+
+br.br2 { line-height: 2em; }
+label {
+	display: block;
+	min-width: 3cm;
+	margin-right: 1em;
+	float: left;
+}
+div.label5 {
+	display: block;
+	width: 5cm;
+	float: left;
+}
+
+table.component_list {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+table.component_list th {
+	padding: 4px 6px 3px 6px;
+	border: 1px solid black;
+}
+
+table.component_list td { text-align: right; }
+table.component_list td.name { text-align: left; }
+
+div.col_container {
+}
+
+div.col_left {
+	float: left;
+	max-width: 65%;
+}
+
+div.col_right {
+	float: right;
+	max-width: 40%;
+	padding-right: 2em;
+}
+
+div.col_footer {
+	clear: both;
+	height: 1px;
+}
+
+div.address_box {
+	background-color: #f8f8f8;
+	border: thin solid grey;
+	margin-top: 0.5em;
+	padding: 0.5em;
+	width: 280px;
+	min-height: 80px;
+}
+
+div.address_box b {
+	display: block;
+	padding-bottom: 4px;
+	border-bottom: 1px solid grey;
+}
