@@ -1,0 +1,11 @@
+development:
+  tomcat_base: http://tomcat.example.com:8180/servlet/
+  tomcat_ip: 127.0.0.1
+
+test:
+  tomcat_base: http://tomcat.example.com:8180/servlet/
+  tomcat_ip: 127.0.0.1
+
+production:
+  tomcat_base: http://tomcat.example.com:8180/servlet/
+  tomcat_ip: 2001:db8::23
