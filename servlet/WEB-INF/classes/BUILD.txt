@@ -1,0 +1,18 @@
+Before trying to build servlets, CLASSPATH must be set:
+
+[example for pkgsrc]
+
+CLASSPATH=/usr/pkg/share/tomcat/lib/servlet-api.jar
+CLASSPATH=$CLASSPATH:/usr/pkg/share/java/fop/build/fop.jar
+CLASSPATH=$CLASSPATH:/usr/pkg/share/tomcat/lib/xmlgraphics-commons-1.4.jar
+CLASSPATH=$CLASSPATH:/usr/pkg/share/tomcat/lib/avalon-framework-4.2.0.jar
+export CLASSPATH
+
+
+[example for dports]
+
+CLASSPATH=/usr/local/apache-tomcat-6.0/lib/servlet-api.jar
+CLASSPATH=$CLASSPATH:/usr/local/share/java/fop/build/fop.jar
+CLASSPATH=$CLASSPATH:/usr/local/apache-tomcat-6.0/lib/xmlgraphics-commons-1.5.jar
+CLASSPATH=$CLASSPATH:/usr/local/apache-tomcat-6.0/lib/avalon-framework-4.2.0.jar
+export CLASSPATH

@@ -1,0 +1,19 @@
+This directory contains code to produce PDF documents as web services.
+
+Documents are generated from raw XML data produced by Corylus
+Ruby-on-Rails part and XSL stylesheets.
+
+Required software:
+
+- Sun/Oracle jdk >= 1.4
+- Apache Tomcat >= 5.5
+
+These Java archives need to be installed in tomcat/common/lib:
+
+  fop.jar (textproc/fop)
+  avalon-framework.jar (devel/avalon-framework)
+  batik.jar (graphics/batik)
+
+Optional:
+
+  jai_core.jar (Allow the use of bitmap images)

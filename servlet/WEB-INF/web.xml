@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN"
+	"http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
+
+<web-app>
+
+	<servlet>
+		<servlet-name>Devis</servlet-name>
+		<servlet-class>Devis</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Facture</servlet-name>
+		<servlet-class>Facture</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>BonLivraison</servlet-name>
+		<servlet-class>BonLivraison</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>BonCommande</servlet-name>
+		<servlet-class>BonCommande</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Enveloppe</servlet-name>
+		<servlet-class>Enveloppe</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>FopPDF</servlet-name>
+		<servlet-class>FopPDFServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Devis</servlet-name>
+		<url-pattern>/Devis.pdf</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Facture</servlet-name>
+		<url-pattern>/Facture.pdf</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>BonLivraison</servlet-name>
+		<url-pattern>/BonLivraison.pdf</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>BonCommande</servlet-name>
+		<url-pattern>/BonCommande.pdf</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Enveloppe</servlet-name>
+		<url-pattern>/Enveloppe.pdf</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>FopPDF</servlet-name>
+		<url-pattern>/FopPDF</url-pattern>
+	</servlet-mapping>
+
+</web-app>
