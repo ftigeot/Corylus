@@ -28,10 +28,4 @@
 <%= options_from_collection_for_select( @categories, 'id', 'name' ) %>
 </select>
 
-<%= observe_field( :ssid, :update => "browse_menu2",
-	:url => { :action => 'ajax_browse_products', :n => 2},
-	:with => "'id='+value",
-	:loading  => 'Element.show("busy"); Element.hide("browse_menu2");',
-	:complete => 'Element.show("browse_menu2"); Element.hide("busy");' ) %>
-
 <div id="browse_menu2"/>

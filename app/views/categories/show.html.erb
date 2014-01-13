@@ -48,9 +48,3 @@
 <%= link_to 'Voir tout', :action => 'show_all', :id => @category %> | 
 <%= link_to 'Editer', :action => 'edit', :id => @category %> | 
 <%= link_to 'Nouveau produit', :controller => 'products', :action => 'new', :category => @category %>
-
-<%= javascript_include_tag 'prototype', 'effects', 'dragdrop' %>
-
-<%= sortable_element 'sortable', :update => 'content', :tag => 'tr',
-	:url => {:action => :update_positions, :id => @category.id},
-	:complete => visual_effect(:highlight, 'content') %>

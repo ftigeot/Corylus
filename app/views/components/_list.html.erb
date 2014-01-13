@@ -34,13 +34,3 @@ max = ProductSupplier.maximum :price,
 
 <%= submit_tag 'Mise à jour' %>
 <% end %>
-
-
-<%= javascript_include_tag 'prototype', 'effects', 'dragdrop' %>
-
-<%= sortable_element 'sortable', :update => 'component_list', :tag => 'tr',
-	:url => {
-		:controller => :components, :action => :update_positions,
-		:owner_id => @product.id
-	},
-	:complete => visual_effect(:highlight, 'component_list') %>
