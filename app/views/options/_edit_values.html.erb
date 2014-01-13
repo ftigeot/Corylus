@@ -1,0 +1,24 @@
+<table>
+<tr><th>Value</th><th>Price</th><th>Default ?</th></tr>
+
+<% for @option_value in @option_values -%>
+<tr>
+
+<% if (@option_value.product_id) -%>
+<td><%= @option_value.product.description %></td>
+<% else -%>
+<td><%= text_field 'option_value[]', :name, :size => 30 %></td>
+<% end -%>
+
+<% if (@option_value.product_id) -%>
+<td class="price"><%= fmt_price(@option_value.product.public_price) %></td>
+<% else -%>
+<td class="price"><%= text_field 'option_value[]', :price, :size => 8 %></td>
+<% end -%>
+
+<td><%= check_box 'option_value[]', :default_value %></td>
+<td><%= link_to 'Suppression', :action => 'remove_value',
+	:id => @option, :opval => @option_value %></td>
+</tr>
+<% end -%>
+</table>

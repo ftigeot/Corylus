@@ -1,0 +1,12 @@
+<h1>Paramètres généraux</h1>
+
+<p><b>Nom de la société:</b> <%= @company_name %></p>
+
+<p><b>Settings:</b></p>
+<%= debug @settings %>
+
+<p><b>Company_name:</b></p>
+<%= debug @company_name %>
+
+<%= link_to 'Afficher', :action => 'show' %> |
+<%= link_to 'Editer', :action => 'edit' %>

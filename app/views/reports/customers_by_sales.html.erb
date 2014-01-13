@@ -1,0 +1,16 @@
+<h1>Customers by sales</h1>
+
+<table>
+<%
+for sale in @sales
+  customer = Customer.find(sale[:customer_id])
+%>
+
+<tr>
+<td><%= link_to customer.name, :controller => 'partners',
+		:action => 'show', :id => customer.id -%></td>
+<td><%= fmt_price( sale[:value] ) -%></td>
+</tr>
+
+<% end %>
+</table>

@@ -1,0 +1,11 @@
+<label for="select_product">Produit:</label>
+<select id="select_product">
+	<option value="0" selected="selected">&nbsp;</option>
+	<%= options_from_collection_for_select( @products, 'id', 'name') %>
+</select>
+
+<%= observe_field( :select_product, :update => 'product_field', 
+  :url => { :controller => 'products', :action => 'ajax_select_product' },
+  :with => "'id='+value",
+  :loading  => 'Element.show("busy"); Element.hide("select_product");',
+  :complete => 'Element.show("select_product"); Element.hide("busy");' ) %>

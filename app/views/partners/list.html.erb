@@ -1,0 +1,20 @@
+<h1>Liste des partenaires</h1>
+
+<%= link_to 'Clients', :controller => 'customers', :action => 'list' %> | 
+<%= link_to 'Fournisseurs', :controller => 'suppliers', :action => 'list' %> | 
+<%= link_to 'Nouveau partenaire', :action => 'new' %>
+
+<table>
+<tr><th>Nom</th><th>Téléphone</th><th>Web</th><th>Créé le</th><th/></tr>
+
+<% for partner in @partners %>
+  <tr class="<%= cycle('dark','light') %>">
+    <td><%= link_to partner.name, :action => 'show', :id => partner %></td>
+    <td><%=h partner.phone %></td>
+    <td><a href="http://<%=h partner.web %>/"><%=h partner.web %></a></td>
+    <td><%= partner.created_on %></td>
+    <td><%= link_to 'Editer', :action => 'edit', :id => partner %></td>
+  </tr>
+<% end %>
+
+</table>

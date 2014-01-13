@@ -1,0 +1,8 @@
+<h1>Edition entrepot</h1>
+
+<%= form_tag :action => 'update', :id => @location do %>
+  <%= render 'form' %>
+  <%= submit_tag 'Mettre à jour' %>
+<% end %>
+
+<%= link_to 'Liste des entrepots', :action => 'list', :id => @location.id %>

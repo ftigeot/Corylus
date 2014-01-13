@@ -1,0 +1,23 @@
+<p>Your cart contains <%= @items.size %> items.</p>
+
+<table class="quotation">
+<tr><th>Nom</th><th>Qté</th><th>Prix unitaire</th><th>Montant</th><th/></tr>
+
+<% for @item in @items -%>
+<tr>
+	<td><% product = Product.find(@item.product_id) %><%= h(product.name) %></td>
+	<td><%= @item.qty %></td>
+	<td align="right"><%= fmt_price(@item.price) %></td>
+	<td class="grey"><%= fmt_price(@item.price * @item.qty) %></td>
+	<td><%= link_to 'Suppression',
+		:action => 'remove_items',
+		:product_id => @item.product_id %></td>
+</tr>
+<% end -%>
+
+<tr>
+	<td colspan="3" align="right"><strong>Total: </strong></td>
+	<td id="totalcell"><%= fmt_price(@cart.total_price) %></td>
+	<td/>
+</tr>
+</table>

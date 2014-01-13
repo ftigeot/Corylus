@@ -1,0 +1,13 @@
+<p><label for="order_created_on">Created on</label><br/>
+<%= date_select 'order', 'created_on'  %></p>
+
+<p><b>Fournisseur:</b></p>
+<select id="order_supplier_id" name="order[supplier_id]">
+	<%= options_from_collection_for_select( @suppliers, "id", "name", @order.supplier_id ) %>
+</select>
+
+<p><b>Adresse de livraison:</b></p>
+<select id="order_shipping_address_id" name="order[shipping_address_id]">
+<%= options_from_collection_for_select(
+	@shipping_addresses, 'id', 'short_name', @order.shipping_address_id ) -%>
+</select>

@@ -1,0 +1,47 @@
+<div id="quotation">
+<table class="quotation">
+<tr><th>Réf.</th><th>Description</th><th>Qté.</th><th>Prix unitaire</th><th>Montant</th></tr>
+
+<% for item in @items %>
+<% if item.product_id -%>
+<tr class="product">
+<% else -%>
+<tr>
+<% end -%>
+<td><%= item.ref %></td>
+<% if (item.product_id.nil? == false) -%>
+<td class="name"><%= link_to item.description, :controller => 'products', :action => 'show', :id => item.product.id %></td>
+<% else -%>
+<td class="name"><%=h item.description %></td>
+<% end -%>
+<td class="grey"><%= item.qty %></td>
+<td><%= item.price %></td>
+<td class="grey"><%= fmt_price(item.total_price) %></td>
+</tr>
+<% end -%>
+
+<% if @order.shipping %>
+<tr>
+<td/>
+<td class="name">Frais de port</td><td class="grey">1</td>
+<td><%= fmt_price(@order.shipping) %></td>
+<td class="grey"><%= fmt_price(@order.shipping) %></td>
+</tr>
+<% end %>
+
+</table>
+
+<table class="total">
+<tr><td>Total HT</td> <td class="grey"><%= fmt_price(@order.total_ht) %></td></tr>
+<tr><td>TVA <%= @order.vat_rate %>%</td><td class="grey"><%= fmt_price(@order.tva) %></td></tr>
+<tr><td>Total TTC</td><td class="grey"><%= fmt_price(@order.total_ttc) %></td></tr>
+</table>
+</div>
+
+<% if @order.remark %>
+<div class="remark">
+<%=h @order.remark %>
+</div>
+<% end %>
+
+<div id="orderfix">&nbsp;</div>

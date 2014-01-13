@@ -1,0 +1,10 @@
+<h1>Edition commande client</h1>
+
+<%= form_tag :action => 'update' do %>
+
+	<%= hidden_field 'order', 'id' %>
+	<%= render 'form' %>
+
+<%= submit_tag "Update" %>
+
+<% end %>

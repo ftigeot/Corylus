@@ -1,0 +1,13 @@
+<label for="select_category2">Sous-catégorie:</label>
+<select id="select_category2">
+	<option value="0" selected="selected">&nbsp;</option>
+	<%= options_from_collection_for_select( @cats, 'id', 'name') %>
+</select>
+
+<%= observe_field( :select_category2, :update => "browse_menu3",
+  :url => { :action => 'browse_next_ajax' },
+  :with => "'id='+value",
+  :loading  => 'Element.show("busy"); Element.hide("browse_menu3");',
+  :complete => 'Element.show("browse_menu3"); Element.hide("busy");' ) %>
+
+<div id="browse_menu3"/>

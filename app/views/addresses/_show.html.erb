@@ -1,0 +1,5 @@
+<% if @address.service %><%=h @address.service %><br/><% end -%>
+<%=h @address.addr1 %><br/>
+<% if @address.addr2 %><%=h @address.addr2 %><br/><% end -%>
+<%=h @address.postcode %> <%=h @address.city %><br/>
+<% if @address.country %><%=h @address.country.name %><br/><% end -%>

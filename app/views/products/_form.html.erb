@@ -1,0 +1,73 @@
+<div class="col_container">
+
+<div class="col_left">
+<p>
+<label>Nom</label> <%= text_field 'product', 'name', :size => 35 %><br class="br2"/>
+<label>Description</label> <%= text_field 'product', 'description', :size => 44 %><br class="br2"/>
+<label>Code produit</label> <%= text_field 'product', 'code', :size => 20 %>
+</p>
+
+<p><b>Catégorie:</b>
+  <select id="product_category_id" name="product[category_id]">
+  <%= options_from_collection_for_select(
+  	@categories, "id", "name", @product.category.id ) %>
+  </select>
+</p>
+
+<p>
+<div class="label5">Prix public HT</div> <%= text_field 'product', 'public_price' %><br class="br2"/>
+
+<div class="label5">Taux de TVA</div>
+  <select id="product_vat_rate_id" name="product[vat_rate_id]">
+  <%= options_from_collection_for_select(
+	@vat_rates, "id", "rate", @product.vat_rate_id ) %>
+  </select>
+<br class="br2"/>
+
+<div class="label5">Poids avec emballage (kg)</div> <%= text_field 'product', 'weight', :size => 6 %><br class="br2"/>
+</p>
+
+<p><label for="product_image_url">Nom du fichier image</label> <%= text_field 'product', 'image_url' %></p>
+</div>
+
+<div class="col_right">
+<p><label for="product_created_on">Créé le</label><br/>
+<%= date_select 'product', 'created_on' %></p>
+
+<p><label for="product_updated_on">Mis à jour le</label><br/>
+<%= date_select 'product', 'updated_on' %></p>
+
+<p><label for="product_salable">Vendable</label>
+<%= check_box 'product', 'salable', {}, 't', 'f' %>
+</p>
+
+<p><label for="show_price">Prix affichable</label>
+<%= check_box 'product', 'show_price', {}, 't', 'f' %>
+</p>
+
+<p><label for="obsolete">Produit obsolète</label>
+<%= check_box 'product', 'obsolete', {}, 't', 'f' %>
+</p>
+</div>
+
+<div class="col_footer">&nbsp;</div>
+</div>
+
+
+
+<div class="col_container" style="border:1px solid blue;">
+
+<div>
+<label for="product_specs">Spécifications</label><br/>
+<%= text_area 'product', 'specs', :cols => 80, :rows => 18 %>
+</div>
+
+<div>
+<label for="product_comment">Commentaire</label><br/>
+<%= text_area 'product', 'comment', :cols => 80, :rows => 18 %>
+</div>
+
+<div class="col_footer">&nbsp;</div>
+</div>
+
+<!--[eoform:product]-->

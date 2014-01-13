@@ -1,0 +1,19 @@
+<h1>List of interventions</h1>
+
+<%= render :partial => 'menubar' %>
+
+<table>
+<tr><th>Customer</th><th>Date</th><th>Summary</th></tr>
+  
+<%
+for intervention in @interventions
+%>
+<tr class="<%= cycle('dark','light') %>">
+	<td><%= intervention.customer.name %></td>
+	<td><%= intervention.created_at %></td>
+	<td><%= intervention.summary %></td>
+	<td><%= link_to 'Show', :action => 'show', :id => intervention.id %></td>
+	<td><%= link_to 'Edit', :action => 'edit', :id => intervention.id %></td>
+</tr>
+<% end %>
+</table>

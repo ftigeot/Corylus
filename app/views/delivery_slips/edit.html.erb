@@ -1,0 +1,37 @@
+<h1>Bon de livraison: édition</h1>
+
+<p><b>Numéro:</b> <%= @dslip.official_id %></p>
+
+<%= form_tag :action => 'update', :id => @dslip.id do %>
+
+<p><b>Date:</b><br/>
+<%= date_select 'dslip', 'created_on' %></p>
+
+<p><b>Produits annulés:</b>
+<%= check_box('dslip', 'cancelled') %></p>
+
+<table class="quotation">
+<tr><th>Description</th><th>Qté. livrée</th><th>Reste</th><th/></tr>
+
+<% for i in @items %>
+	<tr><td class="name"><%= i.description %></td>
+
+	<% if i.dsi_id.nil? %>
+		<td class="grey"><%= i.delivered %></td>
+	<% else -%>
+		<td class="grey"><input type="text" name="items[<%= i.dsi_id %>]" size="2" value="<%= i.delivered %>"/></td>
+	<% end %>
+
+	<td class="grey"><%= i.ordered - i.delivered_todate %></td>
+
+	<td><%= link_to 'Destroy', { :action => 'destroy_item', :id => i.dsi_id},
+		:confirm => 'Are you sure?' %></td></tr>
+<% end %>
+
+</table>
+
+<%= submit_tag 'Mettre à jour' %>
+<% end %>
+<div id="quotationfix">&nbsp;</div>
+
+<%= link_to 'Show', :action => 'show', :id => @dslip %>

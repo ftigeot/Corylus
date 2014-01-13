@@ -1,0 +1,12 @@
+<h1>Edition produit</h1>
+
+<%= form_tag :action => 'update', :id => @product do %>
+  <%= render 'form' %>
+  <%= submit_tag 'Mettre à jour' %>
+<% end %>
+
+<p>Ce produit peut être fourni par:</p>
+
+<%= render 'show_suppliers' %>
+
+<%= link_to 'Show', :action => 'show', :id => @product %>

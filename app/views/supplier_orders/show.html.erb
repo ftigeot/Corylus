@@ -1,0 +1,33 @@
+<h1>Bon de commande fournisseur</h1>
+
+<div class="col_container">
+
+<div class="col_left">
+<p><b>Bon de commande n°:</b> <%= @order.official_id %></p>
+<p><b>Fournisseur:</b> <%= link_to @order.supplier.name, :controller => 'partners',
+	:action => 'show', :id => @order.supplier.id %></p>
+<p><b>Date:</b> <%= @order.created_on %></p>
+</div>
+
+<div class="col_right">
+<% for r in @receptions %>
+	<p><%= link_to 'Bon de réception', :controller => 'receptions', :action => 'show', :id => r.id %></p>
+<% end %>
+
+<% unless @order.fully_received? %>
+<p><%= link_to 'Nouveau bon de réception',
+	:controller => 'receptions',:action => 'new', :id => @order.id %></p>
+<% end %>
+</div>
+
+<div class="col_footer">&nbsp;</div>
+</div>
+
+<%= render 'supplier_orders/show_order' %>
+
+
+<%= link_to 'Edit', :action => 'edit', :id => @order %> | 
+<%= link_to 'Bon de commande XML', :action => 'bon_commande', :id => @order %> |
+<%= link_to 'Bon de commande PDF', @pdf_url %>
+
+<p><%= link_to 'Charger Panier', :action => 'load_cart', :id => @order %></p>

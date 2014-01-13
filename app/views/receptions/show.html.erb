@@ -1,0 +1,50 @@
+<%= render 'topbar' %>
+
+<h1>Réceptions de produits : show</h1>
+
+<div class="col_container">
+
+<div class="col_left">
+<p><b>Fournisseur:</b> <%= @reception.supplier.name %></p>
+<p><b>Entrepot:</b> <%= @reception.location.name %></p>
+<p><b>Date de réception:</b> <%= @reception.created_on %></p>
+</div>
+
+<div class="col_right">
+	<p><%= link_to 'Commande fournisseur',
+		:controller => 'supplier_orders',
+		:action => 'show', :id => @reception.supplier_order_id %></p>
+</div>
+
+<div class="col_footer">&nbsp;</div>
+</div>
+
+<table class="quotation">
+<tr><th>Produit<th>Description</th><th>Qty</th></th><th>Status</th><th>Serials</th></tr>
+<% @reception.reception_items.each do |ri| -%>
+<%
+	name = ri.product_id.nil? ? 'NONE' : ri.product.name
+	description = (ri.description == "") ? ri.product.description : ri.description
+	status = 'livré' if (ri.status == 'ok') 
+	status = 'annulé' if (ri.status == 'canceled') 
+%>
+<% if ri.product_id -%>
+<tr class="product">
+<% else -%>
+<tr>
+<% end -%>
+
+<td><%=h name %></td>
+<% if ri.product_id -%>
+<td><%= link_to description, :controller => 'products', :action => 'show', :id => ri.product_id %></td>
+<% else -%>
+<td><%=h description %></td>
+<% end -%>
+<td class="grey"><%=h ri.qty %></td>
+<td><%= status %></td>
+<td><%=h ri.serials %></td>
+</tr>
+<% end %>
+</table>
+
+<p><%= link_to 'Edit', :action => 'edit', :id => @reception.id %></p>

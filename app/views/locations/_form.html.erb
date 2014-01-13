@@ -1,0 +1,6 @@
+<%= error_messages_for 'location' -%>
+
+<p><b>Nom</b> <%= text_field 'location', 'name', :size => 40 %></p>
+
+<p><label for="location_created_on">Créé le</label><br/>
+<%= date_select 'location', 'created_on' %></p>

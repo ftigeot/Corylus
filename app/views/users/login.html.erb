@@ -1,0 +1,18 @@
+<h1>Login</h1> 
+
+<%= form_tag :action=> 'login' do %>
+
+<label for='user_login'>Login:</label><br/>
+<%= text_field "user", 'login', :size => 20 %><br/>
+
+<label for='user_password'>Password:</label><br/>
+<%= password_field 'user', 'password', :size => 20 %><br/>
+<br/>
+
+<%= submit_tag "Submit" %>
+
+<% end %>
+
+<script type="text/javascript">
+document.getElementById('user_login').focus();
+</script>

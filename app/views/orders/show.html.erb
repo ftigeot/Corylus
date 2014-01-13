@@ -1,0 +1,56 @@
+<h1>Commande client</h1>
+
+<div class="col_container">
+
+<div class="col_left">
+<p><b>Commande n°:</b> <%= @order.order_num %></p>
+<p><b>Client:</b> <%= link_to @order.quotation.customer.name, :controller => 'partners',
+	:action => 'show', :id => @order.quotation.customer.id %></p>
+<p><b>Date:</b> <%= @order.order_date %></p>
+<p><b>Comment:</b> <%= @order.order_comment %></p>
+
+<p><b>Tout livré:</b> <%= @fully_delivered %></p>
+</div>
+
+<div class="col_right">
+<p>
+<%= link_to 'Voir devis', :controller => 'quotations', :action => 'show',
+	:id => @quotation.id %>
+</p>
+
+<p>
+<% if @has_dslip %>
+<% for dslip in @dslips %>
+	<%= link_to 'Bon de livraison', :controller => 'delivery_slips',
+					:action => 'show', :id => dslip %> |
+	<%= link_to 'Bon de livraison PDF', dslip.pdf_url %><br/>
+<% end %>
+<% end %>
+<% if !@fully_delivered %>
+	<%= link_to 'Créer bon de livraison', :controller => 'delivery_slips', :action => 'create', :id => @order.id %>
+<% end %>
+</p>
+
+<p>
+<% unless @invoices.empty? %>
+	<% for invoice in @invoices %>
+		<%= link_to 'Voir facture', :controller => 'invoices', :action => 'show', :id => invoice.id %><br/>
+	<% end %>
+<% else %>
+	<%= link_to 'Créer facture', :controller => 'invoices', :action => 'new', :id => @order.id %>
+<% end %>
+</p>
+</div>
+
+<div class="col_footer">&nbsp;</div>
+</div>
+
+<%= render 'shared/show_quotation' %>
+
+<p><b>Produits non livrés</b></p>
+
+<ul>
+<% for line in @undelivered_items -%>
+	<li><%= line.undelivered -%>x <%=h line.description %></li>
+<% end -%>
+</ul>

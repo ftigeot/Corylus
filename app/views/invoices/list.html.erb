@@ -1,0 +1,38 @@
+<h1>Liste des factures</h1>
+
+<%= render :partial => 'invoices/invoices_bar' %>
+
+<table>
+<tr><th>Numéro</th><th>Client</th><th>Date</th><th>Total HT</th></tr>
+  
+<%
+for invoice in @invoices
+quotation = invoice.order.quotation
+%>
+<% unless invoice.is_credit_note %>
+  <tr class="<%= cycle('dark','light') %>">
+<% else %>
+  <tr class="dark_red">
+<% end %>
+	<td><%= invoice.public_id %></td>
+	<td><%= quotation.customer.name %></td>
+    <td><%=h invoice.created_on %></td>
+	<td align="right"><%= fmt_price(invoice.total_ht) %></td>
+    <td><%= link_to 'Afficher', :controller => 'invoices', :action => 'show', :id => invoice %></td>
+  </tr>
+<% end %>
+</table>
+
+<% unless @unpaid_sum.nil? %>
+
+<div id="quotation">
+<table class="total">
+<tr><td>Dettes client HT</td> <td class="grey"><%= fmt_price(@unpaid_sum) %></td></tr>
+</table>
+</div>
+
+<% end %>
+
+<%= will_paginate @invoices,
+	:prev_label => '&laquo; Précédent',
+	:next_label => 'Suivant &raquo;' %>

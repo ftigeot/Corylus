@@ -1,0 +1,86 @@
+<div class="options">
+
+<h3>Options produit</h3>
+
+<%= form_tag :name => 'select_options', :controller => 'gescom',
+	:action => 'update_options' do -%>
+
+<table>
+<%
+for @option in @options
+	list_values = @option.option_values
+
+	# 1. trouve le cart_item avec le product_id du produit
+	cart_item = @cart.items.find { |i| i.product_id == @product.id }
+
+	# 2. trouve le couple (option_id,value_id) avec l'option_id en
+	# cours de test
+	sel_opt_vid = @option.default_value
+	unless cart_item.nil?
+		for option_value in cart_item.options
+			sel_opt_vid = option_value['value_id'] if option_value['option_id'] == @option.id
+		end
+	end
+	selected_option_value = OptionValue.find( sel_opt_vid )
+	sel_price = selected_option_value.cost
+
+	# 3. trouve les quantités maximales et courantes associée à cette option
+	pl = ProductLine.find :first,
+		:conditions => ["product_id = ? and option_id = ?", @product.id, @option.id]
+	max_qty = pl.max_qty
+	cur_qty = 1
+	unless cart_item.nil?
+		for option_value in cart_item.options
+			cur_qty = option_value['qty'] if option_value['option_id'] == @option.id
+		end
+	end
+-%>
+
+<tr>
+	<td><%= @option.name %></td>
+	<td>
+	<% qty = 1 %>
+	<% if (max_qty > 1) %>
+		<select style="color:blue" name="options[<%= @option.id %>][qty]">
+		<% for qty in 1..max_qty
+			unless (qty == cur_qty) %>
+				<option value="<%= qty %>"><%= qty %></option>
+			<% else -%>
+				<option value="<%= qty %>" selected="selected"><%= qty %></option>
+			<% end -%>
+		<% end -%>
+		</select>
+	<% else -%>
+		<%= hidden_field_tag "options[#{@option.id}][qty]", qty %>
+		1x
+	<% end -%>
+	</td>
+	<td>
+	<%= hidden_field_tag "options[#{@option.id}][id]", @option.id %>
+	<select style="color:blue" name="options[<%= @option.id %>][value_id]">
+	<% for ov in list_values
+		checked = (ov.id == selected_option_value.id)
+		price_delta = sprintf("%+.2f €", cur_qty * (ov.cost - sel_price))
+		if (ov.product_id)
+		  name = ov.product.description + ' ' + price_delta
+		else
+		  name = ov.name + '  ' + price_delta
+		end
+		unless (checked) -%>
+			<option value="<%= ov.id %>"><%= name %></option>
+		<% else -%>
+			<option value="<%= ov.id %>" selected="selected"><%= name %></option>
+		<% end -%>
+	<% end -%>
+	</select>
+	</td>
+</tr>
+<% end -%>
+</table>
+
+<%= hidden_field 'product', 'id' -%>
+<%= submit_tag "Add to cart with selected options" %>
+<%= submit_tag "Recalculate price" %>
+
+<% end -%>
+</div>

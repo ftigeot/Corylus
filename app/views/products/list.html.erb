@@ -1,0 +1,27 @@
+<h2>Produits contenant le terme "<%=h @query %>"</h2>
+
+<div id="quotation">
+<table class="quotation">
+<tr>
+<th>Nom</th><th>Prix de vente</th><th>Vendable</th><th>Prix affichable</th><th>Pos.</th>
+<th/></tr>
+
+<tbody id="sortable">
+<% for product in @products %>
+<% salable = product.salable ? "Oui" : "Non" %>
+<% show_price = product.show_price ? "Oui" : "Non" %>
+<tr class="<%= cycle('dark','light') %>" id="item_<%= product.id %>">
+<td class="name"><%= link_to product.name, :controller => 'Products', :action => 'show', :id => product.id %></td>
+<td class="grey"><%= fmt_price(product.public_price) %></td>
+<td><%= salable %></td>
+<td><%= show_price %></td>
+<td><%= product.position %></td>
+<td><%= link_to 'Ajouter', :controller => 'gescom', :action => 'add_to_cart', :id => product %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+
+<br/>
+
+<%= link_to 'Nouveau produit', :controller => 'products', :action => 'new', :category => @category %>

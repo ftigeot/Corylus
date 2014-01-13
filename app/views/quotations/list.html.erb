@@ -1,0 +1,22 @@
+<h1>Liste des devis</h1>
+
+<table>
+<tr><th>Numéro</th><th>Client</th><th>Créé le</th><th>Total HT</th></tr>
+  
+<%
+for quotation in @quotations
+%>
+<tr class="<%= cycle('dark','light') %>">
+	<td><%= quotation.id %></td>
+	<td><%= quotation.customer.name %></td>
+	<td><%= quotation.created_on %></td>
+	<td align="right"><%= fmt_price(quotation.total_ht) %></td>
+    <td><%= link_to 'Afficher', :action => 'show', :id => quotation %></td>
+    <td><%= link_to 'Editer', :action => 'edit', :id => quotation %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @quotations,
+	:prev_label => '&laquo; Précédent',
+	:next_label => 'Suivant &raquo;' %>

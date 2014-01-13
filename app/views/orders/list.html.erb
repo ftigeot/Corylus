@@ -1,0 +1,21 @@
+<h1>Commandes client</h1>
+
+<p>
+<%= link_to 'Ouvertes', :action => 'list_open' %> |
+<%= link_to 'Toutes', :action => 'list' %>
+</p>
+
+<table>
+<tr><th>Numéro</th><th>Client</th><th>Commandé le</th><th>Total HT</th></tr>
+<%
+for order in @orders
+%>
+<tr class="<%= cycle('dark','light') %>">
+	<td><%= order.order_num %></td>
+	<td><%= order.quotation.customer.name %></td>
+	<td><%= order.order_date %></td>
+	<td align="right"><%= fmt_price(order.quotation.total_ht) %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => order %></td>
+</tr>
+<% end %>
+</table>

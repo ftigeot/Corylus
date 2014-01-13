@@ -1,0 +1,8 @@
+<h1>Edit Event</h1>
+
+<%= form_tag :action => 'update_event', :id => @event.id do %>
+
+  <%= render 'event_form' %>
+
+  <%= submit_tag "Update" %>
+<%end %>

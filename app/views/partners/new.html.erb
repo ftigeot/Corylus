@@ -1,0 +1,9 @@
+<h1>Nouveau partenaire</h1>
+
+<%= form_tag :action => 'create' do %>
+  <%= render 'form' %>
+
+<h2>Adresse de facturation / principale</h2>
+  <%= render :partial => 'addresses/form' %>
+  <%= submit_tag "Créer" %>
+<% end %>

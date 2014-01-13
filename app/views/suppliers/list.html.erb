@@ -1,0 +1,14 @@
+<h1>Liste des fournisseurs</h1>
+
+<table>
+<tr><th>Nom</th><th>Téléphone</th></th><th>Web</th><th>Commentaire</th></tr>
+  
+<% for fournisseur in @fournisseurs %>
+<tr class="<%= cycle('dark','light') %>">
+	<td><%= link_to fournisseur.name, :controller => 'partners', :action => 'show', :id => fournisseur.id %></td>
+	<td><%= fournisseur.phone %></td>
+	<td><%= fournisseur.web %></td>
+	<td><%= fournisseur.comment %></td>
+</tr>
+<% end %>
+</table>

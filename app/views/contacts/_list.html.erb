@@ -1,0 +1,21 @@
+<% if @contacts.size > 0 -%>
+<table>
+<tr><th>Civ.</th><th>Prénom</th><th>Nom</th><th>Service</th><th>Tél. prof.</th><th>Mobile</th><th>Email</th>
+<th>Mailing ?</th><th/></tr>
+
+<% for contact in @contacts %>
+  <tr class="<%= cycle('dark','light') %>">
+    <td><%=h contact.social_title %></td>
+    <td><%=h contact.firstname %></td>
+    <td><%=h contact.lastname %></td>
+    <td><%=h contact.service %></td>
+    <td><%=h contact.phone %></td>
+    <td><%=h contact.mobile %></td>
+    <td><%=h contact.email %></td>
+    <td><%=h contact.mailing_wanted ? 'Oui' : 'Non' %></td>
+    <td><%= link_to 'Editer', :controller => 'contacts', :action => 'edit', :id => contact %></td>
+  </tr>
+<% end %>
+
+</table>
+<% end -%>

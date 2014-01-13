@@ -1,0 +1,38 @@
+<h1>Devis</h1>
+
+<div class="col_container">
+
+<div class="col_left">
+<p><b>Devis n°:</b> <%= @quotation.id %></p>
+<p><b>Client:</b> <%= link_to @quotation.customer.name, :controller => 'partners',
+:action => 'show', :id => @quotation.customer.id %></p>
+<p><b>Date:</b> <%= @quotation.created_on %></p>
+</div>
+
+<div class="col_right">
+<p>
+<% if @is_editable %>
+<%= link_to 'Créer Commande client', :controller => 'orders', :action => 'new',
+	:id => @quotation %>
+<% else %>
+<%= link_to 'Voir Commande client', :controller => 'orders', :action => 'show',
+	:id => @quotation.order.id %>
+<% end %>
+</p>
+</div>
+
+<div class="col_footer">&nbsp;</div>
+</div>
+
+<%= render 'shared/show_quotation' %>
+
+<% if @is_editable %>
+<%= link_to 'Editer', :action => 'edit', :id => @quotation %> | 
+<% else %>
+Edit |
+<% end %>
+<%= link_to 'Devis XML', :action => 'devis', :id => @quotation %> |
+<%= link_to 'Devis PDF', @pdf_url %>
+
+<p><%= link_to 'Charger Panier', :controller => 'gescom', :action => 'load_cart', :id => @quotation %> | 
+<%= link_to 'Dupliquer', :action => 'duplicate', :id => @quotation %></p>

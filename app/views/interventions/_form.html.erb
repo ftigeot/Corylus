@@ -1,0 +1,29 @@
+<p><b>Customer:</b></p>
+<select id="intervention_customer_id" name="intervention[customer_id]">
+	<%= options_from_collection_for_select( @customers, "id", "name", @intervention.customer_id ) %>
+</select>
+</p>
+
+<p>
+<label for='intervention_created_on'>Date of intervention</label><br/>
+<%= date_select 'intervention', 'created_on' %>
+</p>
+
+<p><label for="intervention_summary">Summary</label>
+<%= text_field 'intervention', 'summary', :maxlength => 40 %>
+</p>
+
+<p><b>Duration:</b> 
+<select name='days'>
+<%= options_for_select(0..2, @intervention.days) %>
+</select> days
+
+<select name='hours'>
+<%= options_for_select(0..8, @intervention.hours) %>
+</select> hours
+</p>
+
+<p><b>Description:</b><br/>
+<%= text_area 'intervention', 'description',
+	:cols => 80, :rows => 25 %></p>
+

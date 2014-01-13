@@ -1,0 +1,54 @@
+<h2>Date de référence</h2>
+
+<p><b>Today:</b> <%= @today %></p>
+
+<%= form_tag :action => 'turnover' do %>
+
+<p><%= select_date @today %></p>
+
+<%= submit_tag 'Changer la date' %>
+<% end %>
+
+
+<h2>Chiffre d'affaire par mois</h2>
+
+<p>
+<b>Chiffre d'affaire du mois, année <%= @y_n2 %>:</b> <%= fmt_price(@total_month_n2) %><br/>
+<b>Chiffre d'affaire du mois, année <%= @y_n1 %>:</b> <%= fmt_price @total_month_n1 %><br/>
+<b>Chiffre d'affaire du mois, année <%= @year %>:</b> <%= fmt_price @total_month %><br/>
+<b>Delta:</b> <%= sprintf "%+.2f", (@delta_month_n1 * 100) - 100 %> %
+</p>
+
+<h2>Chiffre d'affaire par trimestre</h2>
+<table>
+<tr>
+<td><%= @y_n1 %>-Q1</td>	<td><%= fmt_price @total_last_q1 %><td>
+<td><%= @year %>-Q1</td>	<td><%= fmt_price @total_q1 %><td>
+<td><%= sprintf "%+.2f", (@delta_last_q1 * 100) - 100 %> %</td>
+</tr>
+<tr>
+<td><%= @y_n1 %>-Q2</td>	<td><%= fmt_price @total_last_q2 %><td>
+<td><%= @year %>-Q2</td>	<td><%= fmt_price @total_q2 %><td>
+<td><%= sprintf "%+.2f", (@delta_last_q2 * 100) - 100 %> %</td>
+</tr>
+<tr>
+<td><%= @y_n1 %>-Q3</td>	<td><%= fmt_price @total_last_q3 %><td>
+<td><%= @year %>-Q3</td>	<td><%= fmt_price @total_q3 %><td>
+<td><%= sprintf "%+.2f", (@delta_last_q3 * 100) - 100 %> %</td>
+</tr>
+<tr>
+<td><%= @y_n1 %>-Q4</td>	<td><%= fmt_price @total_last_q4 %><td>
+<td><%= @year %>-Q4</td>	<td><%= fmt_price @total_q4 %><td>
+<td><%= sprintf "%+.2f", (@delta_last_q4 * 100) - 100 %> %</td>
+</tr>
+</table>
+
+<h2>Chiffre d'affaire par an</h2>
+
+<p><b>Même date l'an dernier:</b> <%= @limit_ly %></p>
+
+<p>
+<b>Chiffre d'affaire <%= @y_n1 %> à cette date:</b> <%= @total_ht_ly %><br/>
+<b>Chiffre d'affaire <%= @year %> à cette date:</b> <%= @total_ht %><br/>
+<b>Delta:</b> <%= sprintf "%+.2f", (@delta_ly * 100) - 100 %> %
+</p>

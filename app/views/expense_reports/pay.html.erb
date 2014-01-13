@@ -1,0 +1,12 @@
+<h1>Expense report: paiement</h1>
+
+<p><b>Date:</b> <%= @expense_report.created_on %></p>
+
+<%= form_tag :action => 'paid', :id => @expense_report.id do %>
+
+<p><label for="paid_on">Paiement date</label><br/>
+<%= date_select 'expense_report', 'paid_on' %></p>
+
+<%= submit_tag "Update" %>
+
+<% end %>

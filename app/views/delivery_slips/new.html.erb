@@ -1,0 +1,14 @@
+<h1>Nouveau bon de livraison</h1>
+
+<%= form_tag :action => 'create_standalone' do %>
+
+<p><b>Client:</p>
+<%= collection_select 'customer', 'id', @customers, :id, :name %>
+
+<p><label for="dslip_created_on">Created on</label><br/>
+<%= date_select 'dslip', 'created_on'  %></p>
+
+<%= submit_tag 'Créer' %>
+
+<% end %>
+

@@ -1,0 +1,69 @@
+<h2>Corylus</h2>
+
+<% if session[:user_id] %>
+
+<hr/>
+
+<ul>
+<li>
+<%= form_tag :controller => 'products', :action => 'search' do %>
+<input id="query" name="query" size="13" type="text" value="Recherche..."
+	onFocus="this.value=''"/>
+<% end %>
+</li>
+</ul>
+
+<hr/>
+
+<ul>
+<li><%= link_to "Produits", :controller => "categories", :action => "list" %></li>
+<li><%= link_to 'Options', :controller => 'options', :action => 'list' %></li>
+<li><%= link_to "Panier", :controller => "gescom", :action => "display_cart" %></li>
+</ul>
+
+<hr/>
+
+<ul>
+<li><%= link_to "Partenaires", :controller => "partners", :action => "list" %></li>
+<li><%= link_to "Contacts", :controller => "contacts", :action => "list" %></li>
+</ul>
+
+<hr/>
+<ul>
+<li><%= link_to "Devis", :controller => "quotations", :action => "list" %></li>
+<li><%= link_to "Commandes clients", :controller => "orders", :action => "list_open" %></li>
+<li><%= link_to "Bons de livraison", :controller => "delivery_slips", :action => "list" %></li>
+<li><%= link_to "Factures", :controller => "invoices", :action => "list" %></li>
+<li><%= link_to "Interventions", :controller => "interventions", :action => "list" %></li>
+</ul>
+
+<hr/>
+<ul>
+<li><%= link_to "Commandes fournisseurs", :controller => "supplier_orders",
+	:action => "list_open" %></li>
+<li><%= link_to "Réceptions", :controller => 'receptions', :action => 'list' %></li>
+<li><%= link_to 'Entrepots', :controller => 'locations', :action => 'list' %></li>
+<li><%= link_to "Stocks", :controller => 'stocks', :action => 'list' %></li>
+<li><%= link_to 'Production', :controller => 'manufactured_goods', :action => 'list' %></li>
+<li><%= link_to "Produits commandés", :controller => 'reports', :action => 'stock_ordered' %></li>
+</ul>
+
+<hr/>
+<ul>
+<li><%= link_to "Expense Reports", :controller => "expense_reports", :action => "list" %></li>
+<li><%= link_to "Statistiques", :controller => "reports", :action => "turnover" %></li>
+</ul>
+
+<hr/>
+<ul>
+<li><%= link_to 'Paramètres', :controller => 'settings', :action => 'show' %></li>
+<li><%= link_to 'Utilisateurs', :controller => 'users', :action => 'list' %></li>
+</ul>
+
+<hr/>
+<ul>
+<li><b>Nom:</b> <%= @user.login %></li>
+<li><%= link_to 'Déconnexion', :controller => 'users', :action => 'logout' %></li>
+</ul>
+
+<% end %>

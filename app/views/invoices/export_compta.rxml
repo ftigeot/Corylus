@@ -1,0 +1,58 @@
+xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
+
+num_mvt = 0
+
+for invoice in @invoices do
+	
+	# numéro de mouvement: 5 caractères, numérique
+	str_mvt = sprintf("%05u", num_mvt)
+	num_mvt += 1
+
+	# Nom du journal, 2 caractères, alphanumérique
+	str_journal = 'VT'
+
+	# Date d'écriture, 8 caractères, YYYYMMDD
+	str_created_on = invoice.created_on.to_s
+
+	# Date d'échéance, 8 caractères, YYYYMMDD
+	due_date = invoice.due_date
+	if (due_date.nil?)
+		str_due_date = str_created_on
+	else
+		str_due_date = due_date.to_s
+	end
+
+	# Numéro de pièce, 12 caractères, alphanumérique
+	str_num_piece = sprintf("%12s", invoice.public_id)
+
+	# Compte, 12 caractères, alphanumérique
+#	str_compte = invoice.customer.compte_compta
+	str_compte = sprintf("%12s", "411001")
+
+	# Libelle: 25 caractères, alphanumérique
+	str_libelle = sprintf("Facture %-16s", invoice.public_id)
+
+	# Montant: 13 caractères, numérique, dont 2 décimales
+	str_montant = sprintf("%013d", invoice.total_ht * 100)
+
+	# Crédit ou débit: 1 caractère, 'C' ou 'D'
+	str_crebit = 'C'
+
+	# Numéro de pointage: 12 caractères, alphanumérique
+	str_pointage = sprintf("%012u", 0)
+
+	# Code analytique / budgétaire: 6 caractères, alphanumérique
+	str_code_anataire = '000000'
+
+	# Libellé du compte: 34 caractères, alphanumériques
+	str_libcompte = sprintf("%34s", "Libellé du compte")
+
+	# Euro: 1 caractère, 'O'
+	str_euro = 'O'
+
+	line  = str_mvt + ':' + str_journal + ':' + str_created_on + ':' + str_due_date
+	line += ':' + str_num_piece + ':' + str_compte + ':' + str_libelle
+	line += ':' + str_montant + ':' + str_crebit + ':' + str_pointage
+	line += ':' + str_code_anataire + ':' + str_libcompte + ':' + str_euro
+	xml.line line
+end

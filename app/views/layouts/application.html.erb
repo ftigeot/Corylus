@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+  <title>Corylus: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'print', :media => 'print' %>
+</head>
+<body>
+
+<div id="sidebar">
+<%= render "shared/sidebar" %>
+</div>
+
+<div id="content">
+
+<% if flash[:error] -%>
+<div id="error"><%= flash[:error] %></div>
+<% end -%>
+
+<% if flash[:notice] -%>
+<div id="notice"><%= flash[:notice] %></div>
+<% end -%>
+
+<%= yield %>
+
+</div>
+
+</body>
+</html>

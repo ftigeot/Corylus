@@ -1,0 +1,23 @@
+<h2>Liste des produits en stock</h2>
+
+<% for location in @locations %>
+<h3>Entrepot: <%=h location.name %></h3>
+
+<table class="quotation">
+<tr>
+<th>Produit</th><th>Stock</th>
+<th>Qté. commande client</th><th>Qté. commande fournisseur</th></tr>
+
+<% for stock in @stocks %>
+<% next if (stock.location != location) %>
+<tr class="<%= cycle('dark','light') %>">
+<td class="name"><%= link_to stock.product.name, :controller => 'Products',
+	:action => 'show', :id => stock.product.id %></td>
+<td><%= stock.qty %></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<% end %>
+</table>
+
+<% end %>

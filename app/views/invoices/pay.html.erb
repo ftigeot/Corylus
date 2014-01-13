@@ -1,0 +1,15 @@
+<h1>Facture: paiement</h1>
+
+<p><b>Facture n°:</b> <%= @invoice.public_id %></p>
+<p><b>Client:</b> <%= @quotation.customer.name %></p>
+<p><b>Date:</b> <%= @invoice.created_on %></p>
+<p><b>Date d'échéance:</b> <%= @invoice.due_date %></p>
+
+<%= form_tag :action => 'paid', :id => @invoice.id do %>
+
+<p><label for="paiement_date">Date de paiement</label><br/>
+<%= date_select 'invoice', 'paiement_date' %></p>
+
+<%= submit_tag "Mise à jour" %>
+
+<% end %>

@@ -1,0 +1,16 @@
+<h2>Liste des produits en stock</h2>
+
+<div id="quotation">
+<table class="quotation">
+<tr>
+<th>Nom</th><th>Stock</th><th>Qté. commande client</th><th>Qté. commande fournisseur</th></tr>
+
+<% for product in @products %>
+<tr class="<%= cycle('dark','light') %>">
+<td class="name"><%= link_to product.name, :controller => 'Products', :action => 'show', :id => product.id %></td>
+<td><%= product.stock %></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<% end %>
+</table>

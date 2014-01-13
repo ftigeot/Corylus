@@ -1,0 +1,18 @@
+<%= hidden_field 'address', 'partner_id' %>
+
+<table>
+<tr><td><label for="address_service">Service:</label></td>		<td><%= text_field 'address', 'service', :size => 40 %></td></tr>
+<tr><td><label for="address_addr1">Addr1:</label></td>			<td><%= text_field 'address', 'addr1', :size => 40 %></td></tr>
+<tr><td><label for="address_addr2">Addr2:</label></td>			<td><%= text_field 'address', 'addr2', :size => 40 %></td></tr>
+<tr><td><label for="address_postcode">Code postal:</label></td>	<td><%= text_field 'address', 'postcode', :size => 5 %></td></tr>
+<tr><td><label for="address_city">Ville:</label></td>			<td><%= text_field 'address', 'city', :size => 40 %></td></tr>
+<tr><td><label for="address_country">Pays:</label></td>
+<td>
+<select id="address_country_id" name="address[country_id]">
+	<% countries = Country.find :all %> 
+	<%= options_from_collection_for_select(
+		countries, 'id', 'name', @address.country_id) %>
+</select>
+</td>
+</tr>
+</table>

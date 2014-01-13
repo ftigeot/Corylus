@@ -1,0 +1,48 @@
+<h1>Edition options produit</h1>
+
+<p><b>Nom:</b> <%=h @product.name %></p>
+<p><b>Description:</b> <%=h @product.description %></p>
+
+<h3>Options produit</h3>
+
+<%= form_tag :action => 'update_lines', :id => @product do %>
+<table>
+
+<% for @line in @product_lines %>
+
+	<% if (@line.option_id.nil?) %>
+		<%= render :partial => 'show_description_line' -%>
+	<% else -%>
+		<%= raw '<tr class="option_line">' -%>
+		<%= render :partial => 'show_option_line' -%>
+	<% end -%>
+	
+	</tr>
+<% end -%>
+
+</table>
+<p><%= submit_tag 'Mettre à jour' %></p>
+<% end -%>
+
+<p/>
+
+<div id="busy" style="float:right;display:none;"> Busy... </div>
+
+<%= form_tag :action => 'add_option', :id => @product.id do %>
+	<label for="option_choice">Options:</label>
+	<select id="option_choice" name="option_id">
+		<option value="0" selected="selected">&nbsp;</option>
+		<%= options_from_collection_for_select( @unused_options, 'id', 'description' ) %>
+	</select>
+	<%= submit_tag 'Ajouter une option produit' %>
+<% end %>
+
+<p/>
+
+<%= form_tag :action => 'add_description_line', :id => @product.id do %>
+	<%= submit_tag 'Ajouter une ligne de texte' %>
+<% end %>
+
+<p/>
+
+<%= link_to 'Show', :action => 'show', :id => @product.id %>

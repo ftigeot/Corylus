@@ -1,0 +1,94 @@
+<%= render 'categories/position' %>
+
+<div class="col_container">
+
+<div class="col_left">
+<p>
+<b>Nom:</b> <%=h @product.name %><br/>
+<b>Description:</b> <%=h @product.description %><br/>
+<b>Code produit:</b> <%=h @product.code %>
+</p>
+
+<p>
+<b>Prix de base:</b> <%= fmt_price(@product.public_price) %><br/>
+<b>Coût des composants:</b> <%= fmt_price(@product.components_cost) %><br/>
+<b>Coût des options:</b> <%= fmt_price(@options_cost) %><br/>
+<b>Prix total:</b> <%= fmt_price(@price) %><br/>
+</p>
+
+<p>
+<b>Taux de TVA:</b> <%= @product.vat %>
+</p>
+
+<p><b>Poids avec emballage:</b> <%=h @product.weight %> kg<br/>
+<b>Stock:</b> <%= @product.stock %></p>
+</div>
+
+<div class="col_right">
+<p><b>Created on:</b> <%= @product.created_on %></p>
+
+<p><b>Updated on:</b> <%= @product.updated_on %></p>
+
+<% salable = @product.salable ? 'Oui' : 'Non' %>
+<% show_price = @product.show_price ? 'Oui' : 'Non' %>
+<p>
+<b>Vendable:</b> <%=h salable %><br/>
+<b>Prix affichable:</b> <%=h show_price %><br/>
+</p>
+<% obsolete = @product.obsolete ? 'Oui' : 'Non' %>
+<p><b>Produit obsolète:</b> <%=h obsolete %></p>
+</div>
+
+<div class="col_footer"/>
+</div>
+
+
+<% if (!@product.image_url.nil? && @product.image_url.length > 0) %>
+<div>
+
+<div class="left">
+<b>Mini image:</b><br/>
+<img src="/images/products/mini_<%= @product.image_url %>">
+</div>
+
+<div class="left">
+<b>Image:</b><br/>
+<img src="/images/products/<%= @product.image_url %>">
+</div>
+
+</div>
+<div class="vspacing"/>
+<% end %>
+
+<% if @product.specs %>
+<hr/>
+<p><b>Specs:</b></p>
+<div id="specs">
+<%= @product.specs %>
+</div>
+<% end %>
+
+<% if @product.comment %>
+<hr/>
+<h3>Commentaire:</h3>
+<div class="comment">
+<%=h @product.comment %>
+<hr/>
+</div>
+<% end %>
+
+<% unless @options.empty? %>
+<%= render 'show_options' %>
+<hr/>
+<% end %>
+
+<p>Ce produit peut être fourni par:</p>
+
+<%= render 'show_suppliers' %>
+
+
+<%= link_to 'Ajouter au panier',
+	{:controller => 'gescom', :action => 'add_to_cart', :id => @product },
+	:class =>'addtocart' %> |
+<%= link_to 'Editer', :action => 'edit', :id => @product %> |
+<%= link_to 'Cloner', :action => 'zclone', :id => @product %>

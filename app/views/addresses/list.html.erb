@@ -1,0 +1,49 @@
+<h1>Liste des adresses</h1>
+
+<p><b>Société:</b> 
+<% unless (@company.nil?) -%>
+<%= link_to @name, :controller => 'partners', :action => 'show', :id => @company.id %></p>
+<% else -%>
+<%=h @name %></p>
+<% end -%>
+
+<%
+entity_type = ''
+entity_type += ' client' if (@company && @company.is_customer)
+entity_type += ' fournisseur' if (@company && @company.is_supplier)
+entity_type += ' votre société' if (@company.nil?)
+%>
+<p><b>Type d'entité:</b> <%=h entity_type %></p>
+
+<% for address in @addresses %>
+
+<hr/>
+<table>
+<tr><td>Service:</td>		<td><%=h address.service %></td></tr>
+<tr><td>Addr1:</td>			<td><%=h address.addr1 %></td></tr>
+<tr><td>Addr2:</td>			<td><%=h address.addr2 %></td></tr>
+<tr><td>Code postal:</td>	<td><%=h address.postcode %></td></tr>
+<tr><td>Ville:</td>			<td><%=h address.city %></td></tr>
+<tr><td>Pays:</td>			<td><%=h address.country.name %></td></tr>
+</table>
+
+<% if address == @billing_address %>
+<p><b>Adresse de facturation</b></p>
+<% end %>
+<% if address == @shipping_address %>
+<p><b>Adresse de livraison</b></p>
+<% end %>
+
+<p>
+<%= link_to 'Editer', :controller => 'addresses', :action => 'edit', :id => address.id %> | 
+<%= link_to 'Choisir comme adresse de facturation', :action => 'set_billing', :id => address.id %> | 
+<%= link_to 'Choisir comme adresse de livraison', :action => 'set_shipping', :id => address.id %> |
+<%= link_to 'Enveloppe XML', :controller => 'addresses', :action => 'envelope',
+	:id => address.id, :format => 'xml' %> |
+<%= link_to 'Enveloppe PDF', address.pdf_url %>
+</p>
+
+<% end %>
+
+<hr/>
+<p><%= link_to 'Nouvelle adresse', :controller => 'addresses', :action => 'new', :id => @company %></p>

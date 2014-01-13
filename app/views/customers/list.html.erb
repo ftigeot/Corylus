@@ -1,0 +1,15 @@
+<h1>Liste des clients</h1>
+
+<table>
+<tr><th>Nom</th><th>Téléphone</th><th>Créé le</th><th/></tr>
+
+<% for customer in @customers %>
+  <tr class="<%= cycle('dark','light') %>">
+    <td><%= link_to customer.name, :controller => 'partners', :action => 'show', :id => customer %></td>
+    <td><%=h customer.phone %></td>
+    <td><%= customer.created_on %></td>
+    <td><%= link_to 'Editer', :action => 'edit', :id => customer %></td>
+  </tr>
+<% end %>
+
+</table>

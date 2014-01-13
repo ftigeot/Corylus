@@ -1,0 +1,15 @@
+<p><b>Catégorie:</b>
+
+<% for ancestor in @category.ancestors.reverse %>
+	<% if ancestor %>
+		<%= link_to ancestor.name, :controller => 'categories', :action => 'show', :id => ancestor %> | 
+	<%end %>
+<% end %>
+
+<% if @product %>
+	<%= link_to @category.name, :controller => 'categories', :action => 'show', :id => @category %>
+<% else %>
+	<%=h @category.name %></p>
+<% end %>
+
+<hr/>

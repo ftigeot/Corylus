@@ -1,0 +1,8 @@
+<h1>Réceptions de produits : new</h1>
+
+<b>Bon de commande fournisseur:</b> <%= @supplier_order.official_id -%>
+
+<%= form_tag :action => 'create', :id => @reception.id do %>
+<%= render 'form' %>
+<%= submit_tag 'Create' %>
+<% end %>

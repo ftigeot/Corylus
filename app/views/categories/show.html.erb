@@ -1,0 +1,56 @@
+<%= render 'position' %>
+
+<% if @category.description %>
+<div id="specs">
+<%= @category.description %>
+</div>
+<hr/>
+<% end %>
+
+<% if @categories.size > 0 %>
+<p><b>Sous-Catégories</b></p>
+
+<%= render 'sublist' %>
+<hr/>
+<% end %>
+
+<h2>Liste des produits</h2>
+
+<div id="quotation">
+<table class="quotation">
+<tr>
+<th><%= link_to 'Nom', :action => 'sort_by', :id => @category.id, :column => 'name' %></th>
+<th><%= link_to 'Prix de vente', :action => 'sort_by', :id => @category.id, :column => 'public_price' %></th>
+<th>Vendable</th><th>Prix affichable</th>
+<th><%= link_to 'Maj.', :action => 'sort_by', :id => @category.id, :column => 'updated_on' %></th>
+<th><%= link_to 'Pos.', :action => 'sort_by', :id => @category.id, :column => 'position' %></th>
+<th/></tr>
+
+<tbody id="sortable">
+<% for product in @products %>
+<% salable = product.salable ? "Oui" : "Non" %>
+<% show_price = product.show_price ? "Oui" : "Non" %>
+<tr class="<%= cycle('dark','light') %>" id="item_<%= product.id %>">
+<td class="name"><%= link_to product.name, :controller => 'Products', :action => 'show', :id => product.id %></td>
+<td class="grey"><%= fmt_price(product.public_price) %></td>
+<td><%= salable %></td>
+<td><%= show_price %></td>
+<td><%= product.updated_on %></td>
+<td><%= product.position %></td>
+<td><%= link_to 'Ajouter', :controller => 'gescom', :action => 'add_to_cart', :id => product %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+
+<br/>
+
+<%= link_to 'Voir tout', :action => 'show_all', :id => @category %> | 
+<%= link_to 'Editer', :action => 'edit', :id => @category %> | 
+<%= link_to 'Nouveau produit', :controller => 'products', :action => 'new', :category => @category %>
+
+<%= javascript_include_tag 'prototype', 'effects', 'dragdrop' %>
+
+<%= sortable_element 'sortable', :update => 'content', :tag => 'tr',
+	:url => {:action => :update_positions, :id => @category.id},
+	:complete => visual_effect(:highlight, 'content') %>

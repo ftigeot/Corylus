@@ -1,0 +1,11 @@
+<h1>Adresse: édition</h1>
+
+<%= form_tag :action => 'update', :id => @address do %>
+
+  <%= render 'form' %>
+  <%= submit_tag 'Mettre à jour' %>
+
+<% end %>
+
+<p/>
+<%= link_to 'Carnet d\'adresses', :controller => 'addresses', :action => 'list', :id => @address.partner_id %>

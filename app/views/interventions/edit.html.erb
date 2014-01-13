@@ -1,0 +1,11 @@
+<h1>Intervention: edit</h1>
+
+<p>
+<%= render :partial => 'menubar' %> | 
+<%= link_to 'Show', :action => 'show', :id => @intervention.id %>
+</p>
+
+<%= form_tag :action => 'update', :id => @intervention.id do %>
+  <%= render 'form' %>
+  <%= submit_tag 'Update' %>
+<% end %>

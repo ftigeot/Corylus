@@ -1,0 +1,12 @@
+<%
+for opt in @item.options
+	option = Option.find( opt['option_id'] )
+	qty =  opt['qty'].to_i
+	val = OptionValue.find( opt['value_id'] )
+	unless (qty > 1)
+-%>
+		<tr><td class="name" colspan="4"><%=h option.name %>: <%=h val.name %></td></tr>
+	<% else -%>
+		<tr><td class="name" colspan="4"><%=h option.name %>: <%= qty %>x <%=h val.name %></td></tr>
+	<% end -%>
+<% end -%>

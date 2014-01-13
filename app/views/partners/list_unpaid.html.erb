@@ -1,0 +1,40 @@
+<h1>Partenaire: <%= @partner.name %></h1>
+
+<%= render :partial => 'partner_bar' %>
+
+<h2>Factures non payées</h2>
+
+<table>
+<tr><th>Numéro</th><th>Date</th><th>Réf. commande</th><th>Date échéance</th>
+<th>Montant</th><th>Reste à payer</th></tr>
+  
+<%
+for invoice in @invoices
+if (invoice.due_date.nil?)
+  due_date = 'A réception de facture'
+else
+  due_date = invoice.due_date
+end
+advance = invoice.advance.nil? ? 0 : invoice.advance
+unpaid = invoice.total_ttc - advance
+-%>
+<tr class="<%= cycle('dark','light') %>">
+	<td><%= invoice.public_id %></td>
+	<td><%= invoice.created_on %></td>
+	<td><%= invoice.order.order_num %></td>
+	<td><%= due_date %></td>
+	<td align="right"><%= fmt_price(invoice.total_ttc) %></td>
+	<td align="right"><%= fmt_price(unpaid) %></td>
+	<td><%= link_to 'Afficher', :controller => 'invoices', :action => 'show', :id => invoice %></td>
+</tr>
+<% end -%>
+</table>
+
+<div id="quotation">
+<table class="total">
+<tr><td>Dettes client HT</td> <td class="grey"><%= fmt_price(@unpaid_sum) %></td></tr>
+</table>
+</div>
+
+<p><%= link_to 'Relevé xml', :action => 'list_unpaid', :format => 'xml' -%> | 
+<%= link_to 'Relevé pdf', :action => 'list_unpaid', :format => 'pdf' -%></p>

@@ -1,0 +1,10 @@
+<h1>Nouvelle commande client</h1>
+
+<%= form_tag :action => 'create' do %>
+
+	<%= hidden_field 'order', 'quotation_id' %>
+	<%= render 'form' %>
+
+<%= submit_tag "Create" %>
+
+<% end %>

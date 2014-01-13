@@ -1,0 +1,15 @@
+<!--[form:reception]-->
+
+<%= hidden_field 'reception', 'supplier_order_id' -%>
+<%= hidden_field 'reception', 'supplier_id' -%>
+
+<p><b>Entrepot:</b><br/>
+<select id="reception_location_id" name="reception[location_id]">
+	<%= options_from_collection_for_select( @locations, 'id', 'name', @reception.location_id ) -%>
+</select>
+</p>
+
+<p><b>Date de réception:</b><br/>
+<%= date_select 'reception', 'created_on'  %></p>
+
+<!--[eoform:reception]-->

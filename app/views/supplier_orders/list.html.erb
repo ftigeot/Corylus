@@ -1,0 +1,22 @@
+<h1>Commandes fournisseurs</h1>
+
+<p>
+<%= link_to 'Ouvertes', :action => 'list_open' %> |
+<%= link_to 'Toutes', :action => 'list' %>
+</p>
+
+<table>
+<tr><th>Numéro</th><th>Fournisseur</th><th>Créé le</th><th>Total HT</th></tr>
+  
+<% for order in @orders %>
+<tr class="<%= cycle('dark','light') %>">
+	<td><%= order.official_id %></td>
+	<td><%= order.supplier_name %></td>
+	<td><%= order.created_on %></td>
+	<td align="right"><%= fmt_price(order.total_ht) %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => order %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => order %></td>
+</tr>
+<% end %>
+
+</table>

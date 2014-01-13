@@ -1,0 +1,28 @@
+<h1>Ajout d'un fournisseur</h1>
+
+<p>Produit: <%= @product.description %></p>
+
+<h2>Fournisseurs existants</h2>
+
+<ul>
+<% for f in @product.suppliers %> 
+	<li><%= f.name %></li>
+<% end %>
+</ul>
+
+<h2>Nouvelle référence fournisseur</h2>
+
+<%= form_tag :action => 'add_fournisseur' do %>
+
+<input type="hidden" name="product_id" value="<%= @product.id %>"/>
+
+<select name="fournisseur_id">
+	<%= options_from_collection_for_select(@fournisseurs, "id", "name") %>
+</select>
+
+Référence: <input type="text" name="ref" size="24"/>
+Prix: <input type="text" name="price" size="10"/> €
+
+<input type="submit" value="Ajouter" />
+
+<% end %>

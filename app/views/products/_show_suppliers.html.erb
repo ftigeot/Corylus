@@ -1,0 +1,16 @@
+<table>
+<tr><th>Fournisseur</th><th>Réf.</th><th>Prix</th><th>Dernière maj.</th><th/></tr>
+</table>
+<ul>
+<% for ps in @product_suppliers %> 
+	<li>
+		<%= link_to(ps.supplier.name, :controller => 'partners', :action => 'show', :id => ps.supplier_id) %> |
+		<%= ps.ref_fournisseur %> |
+		<%= fmt_price(ps.price) %> |
+		<%= ps.updated_on %> |
+		<%= link_to 'mise à jour', :controller => 'products', :action => 'edit_supplier', :id => ps.id %>
+	</li>
+<% end %>
+</ul>
+
+<p><%= link_to 'Indiquer une nouvelle référence fournisseur', :action => 'new_supplier', :id => @product.id %></p>

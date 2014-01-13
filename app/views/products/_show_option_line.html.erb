@@ -1,0 +1,35 @@
+<%
+option = Option.find( @line.option_id )
+@option_values = OptionValue.find :all,
+	:conditions => ['option_id = ?', option.id], :order => 'position'
+%>
+<tr class="option_line">
+<td><%= link_to option.name, :controller => 'options',
+	:action => 'edit', :id => option.id %></td>
+<td><b>Qté. max:</b> <%= text_field 'line[]', :max_qty, :size => 2 %></td>
+<td>
+	<%= link_to 'up',
+		:controller => 'product_lines',
+		:action => 'move_up', :id => @line.id %>
+	<%= link_to 'down',
+		:controller => 'product_lines',
+		:action => 'move_down', :id => @line.id %>
+</td>
+<tr><td colspan="2"><table class="option_values">
+<%
+for value in @option_values -%>
+	<% (value.default_value) ? tr = '<tr class="default_value">' : tr = '<tr>' -%>
+	<%= raw tr %>
+	<% if (value.product_id) -%>
+		<% product = Product.find(value.product_id) %>
+		<td><%= link_to product.description, :controller => 'products',
+			:action => 'show', :id => product.id %></td>
+		<td class="price"><%= fmt_price(product.public_price) %></td>
+	<% else -%>
+		<td><%=h value.name %></td>
+		<td class="price"><%= fmt_price(value.cost) %></td>
+	<% end -%>
+	</tr>
+<% end -%>
+</table></td></tr>
+</tr>

@@ -1,0 +1,20 @@
+<h1>Liste des bons de livraison</h1>
+
+<p><%= link_to 'Nouveau bon de livraison', :action => 'new' %></p>
+
+<table>
+<tr><th>Numéro</th><th>Client</th><th>Commande</th><th>Créé le</th><th>Adresse</th><th/></tr>
+  
+<%
+for ds in @delivery_slips
+%>
+<tr class="<%= cycle('dark','light') %>">
+	<td><%= ds.id %></td>
+	<td><%= ds.order.quotation.customer.name %></td>
+	<td><%= ds.order_id %></td>
+	<td><%= ds.created_on %></td>
+	<td><%= ds.address_id %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => ds %></td>
+</tr>
+<% end %>
+</table>

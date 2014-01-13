@@ -1,0 +1,17 @@
+<h1>Paramètres généraux: édition</h1>
+
+<%= form_tag :action => 'update' do %>
+
+<p><label for="settings_company_name">Nom de la société</label><br/>
+<%= text_field 'settings', 'company_name', :size => 20 %></p>
+
+<p><b>BIC:</b> <%= text_field 'settings', 'bic', :size => 11 %></p>
+<p><b>IBAN:</b> <%= text_field 'settings', 'iban', :size => 33 %></p>
+</ul>
+
+<%= submit_tag 'Mettre à jour' %>
+<% end %>
+
+
+<%= link_to 'Afficher', :action => 'show' %> |
+<%= link_to 'Editer', :action => 'edit' %>

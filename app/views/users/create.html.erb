@@ -1,0 +1,21 @@
+<h1>Create user</h1>
+
+<p>Ce formulaire permet de créer un nouvel utilisateur externe, utilisable
+par un client final.</p>
+
+<%= form_tag :action=> "create" do %>
+
+<%= error_messages_for 'user' %><br/>
+
+<label for="user_name">Username</label><br/>
+<%= text_field "user", 'name', :size => 20 %><br/>
+
+<label for="user_customer">Client</label><br/>
+<%= select 'user', 'customer_id', @customers.collect {|c| [c.name, c.id]} %><br/>
+
+<label for="user_email">Email</label><br/>
+<%= text_field "user", "email",  :size => 20 %><br/>
+
+<%= submit_tag "Create" %>
+
+<% end %>

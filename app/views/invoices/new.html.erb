@@ -1,0 +1,26 @@
+<h1>Nouvelle facture</h1>
+
+<%= form_tag :action => 'create' do %>
+
+	<%= hidden_field 'invoice', 'order_id' %>
+	<%= hidden_field 'invoice', 'ds_id' %>
+
+<p><b>Client:</b> <%= @order.quotation.customer.name %></p>
+
+<p>Adresse de facturation: <%= @invoice.address.id %></p>
+	<%= hidden_field 'invoice', 'address_id' %>
+
+<% if @order.quotation.customer.payment_delay %>
+<p>Date avec délai de paiement à <%= @order.quotation.customer.payment_delay %> jours: 
+<%= @invoice.due_date %></p>
+
+<p><label for="invoice_due_date">Date d'échéance</label><br/>
+<%= date_select 'invoice', 'due_date', :start_year => 2006 %></p>
+<% end %>
+
+<p><label for="invoice_shipping">Frais de port</label>
+<%= text_field 'invoice', 'shipping', :maxlength => 4 %></p>
+
+<%= submit_tag "Create" %>
+
+<% end %>

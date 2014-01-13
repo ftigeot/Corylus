@@ -1,0 +1,12 @@
+<h1>Manufactured Goods</h1>
+
+<table>
+<tr><th>Product</th><th>Creation date</th><th>Serial</th></tr>
+<% for mg in @mgs %>
+<tr class="<%= cycle('dark','light') %>">
+<td class="name"><%= link_to mg.product.name, :action => 'show', :id => mg.id %></td>
+<td><%=h mg.created_on %></td>
+<td><%=h mg.serial_number %></td>
+</tr>
+<% end %>
+</table>

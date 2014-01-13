@@ -1,0 +1,53 @@
+<h1>Show expense report</h1>
+
+<div class="col_container">
+<div class="col_left">
+<p>
+<b>Date:</b> <%= @expense_report.created_on %><br/>
+<b>User name:</b> <%= @expense_report.user.name -%><br/>
+</p>
+</div>
+
+<div class="col_right">
+<p>
+<% if @expense_report.paid_on.nil? %>
+<b>Paid on: </b> <span style="color:red">Unpaid</span><br/>
+<%= link_to 'Enter paiement date',
+	:action => 'pay', :id => @expense_report.id %>
+<% else %>
+<b>Paid on: </b> <%= @expense_report.paid_on %><br/>
+<% end %>
+</p>
+</div>
+
+<div class="col_footer">&nbsp;</div>
+</div>
+
+<table>
+<tr><th>Date</th><th>Description</th><th>Merchant</th>
+<th>Type of payment</th><th>Amount</th></tr>
+<% total_cost = 0 %>
+
+<% for eri in @er_items %>
+<tr class="<%= cycle('dark','light') %>">
+<td><%= eri.expense_date %></td>
+<td><%= eri.description %></td>
+<td><%= eri.vendor %></td>
+<td><%= eri.payment_type %></td>
+<td><%= fmt_price(eri.amount) %></td>
+</tr>
+<% total_cost += eri.amount %>
+<% end %>
+
+</table>
+
+<p>
+<b>Total cost:</b> <%= fmt_price(total_cost) %> (VAT included)<br/>
+</p>
+
+<p>
+<%= link_to 'Edit', :action => 'edit', :id => @expense_report.id %> | 
+<%= link_to 'View as xml', :action => 'show', :id => @expense_report.id,
+	:format => 'xml' %> |
+<%= link_to 'View as pdf', @pdf_url %>
+</p>

@@ -1,0 +1,21 @@
+<h1>Manufactured Good</h1>
+
+<p><b>Name:</b> <%= link_to @mg.product.name,
+	:controller => 'products', :action => 'show', :id => @mg.product.id %></p>
+<p><b>Creation date:</b> <%=h @mg.created_on %></p>
+<p><b>Serial#:</b> <%=h @mg.serial_number %></p>
+
+<table>
+<tr><th>Product</th><th>qty</th></tr>
+
+<tbody id="sortable">
+<% for mi in @mis %>
+<tr class="<%= cycle('dark','light') %>">
+<td class="name">
+	<%= link_to mi.product.name,
+	:controller => 'products', :action => 'show', :id => mi.product.id %></td>
+<td><%=h mi.qty %></td>
+</tr>
+<% end %>
+</tbody>
+</table>

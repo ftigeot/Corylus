@@ -1,0 +1,7 @@
+<%= hidden_field 'event', 'partner_id' %>
+
+<p><label for="event_date">Date</label><br/>
+<%= date_select 'event', 'created_on' %></p>
+
+<p><label for="event_blah">Comment</label><br/>
+<%= text_area 'event', 'blah', :cols => 80, :rows => 25 %></p>

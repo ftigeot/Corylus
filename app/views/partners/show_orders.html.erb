@@ -1,0 +1,21 @@
+<h1>Partenaire: <%= @partner.name %></h1>
+
+<%= render :partial => 'partner_bar' %>
+
+<h2>Past orders</h2>
+
+<table>
+<tr><th>Numéro</th><th>Fournisseur</th><th>Créé le</th><th>Total HT</th></tr>
+  
+<% for order in @orders %>
+<tr class="<%= cycle('dark','light') %>">
+	<td><%= order.official_id %></td>
+	<td><%= order.supplier.name %></td>
+	<td><%= order.created_on %></td>
+	<td align="right"><%= fmt_price(order.total_ht) %></td>
+    <td><%= link_to 'Show', :controller => 'supplier_orders',
+    	:action => 'show', :id => order %></td>
+    <td><%= link_to 'Edit', :controller => 'supplier_orders',
+    	:action => 'edit', :id => order %></td>
+</tr>
+<% end %>

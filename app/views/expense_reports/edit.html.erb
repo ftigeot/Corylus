@@ -1,0 +1,35 @@
+<h1>Edit expense report</h1>
+
+<%= form_tag :action => 'update', :id => @expense_report.id do %>
+
+<b>Date:</b> <%= date_select 'expense_report', 'created_on' %><br/>
+<b>User name:</b> <%= @expense_report.user.name -%><br/>
+<%= hidden_field 'expense_report', 'user_id' %>
+
+<table>
+<tr><th>Date</th><th>Description</th><th>Merchant</th>
+<th>Type of payment</th><th>Amount</th></tr>
+<% total_cost = 0 %>
+
+<% for @eri in @er_items %>
+<tr class="<%= cycle('dark','light') %>">
+<td><%= date_select 'eri[]', 'expense_date' -%></td>
+<td><%= text_field 'eri[]', 'description', :size => 20 %></td>
+<td><%= text_field 'eri[]', 'vendor', :size => 20 %></td>
+<td><%= text_field 'eri[]', 'payment_type', :size => 20 %></td>
+<td><%= text_field 'eri[]', 'amount', :size => 5 %></td>
+</tr>
+<% total_cost += @eri.amount %>
+<% end %>
+</table>
+
+<b>Total cost:</b> <%= fmt_price(total_cost) %> (VAT included)<br/>
+
+<p><%= submit_tag 'Update' %></p>
+<% end %>
+
+<p><%= form_tag :action => 'new_line', :id => @expense_report.id do %>
+<%= submit_tag 'Add a line' %>
+<% end -%></p>
+
+<p><%= link_to 'Show', :action => 'show', :id => @expense_report.id %></p>

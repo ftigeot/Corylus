@@ -1,0 +1,20 @@
+<h1>Nouveau devis</h1>
+
+<%= render 'gescom/display_cart' %>
+
+<%= form_tag :action => 'save_quotation' do %>
+<table>
+<tr>
+	<td>Client:</td>
+	<td><%=
+		select("quotation", "customer_id",
+			@customers.collect {|c| [ c.name, c.id ] })
+	%></td>
+</tr>
+<tr>
+	<td>Frais de port</td>
+	<td><%= text_field :quotation, 'shipping', :size => 4 %></td>
+</tr>
+</table>
+<%= submit_tag(" Create ") %>
+<% end %>

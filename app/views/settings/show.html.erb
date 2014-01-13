@@ -1,0 +1,25 @@
+<h1>Paramètres généraux</h1>
+
+<p><b>Nom de la société:</b> <%= @company_name %></p>
+
+<ul>
+<li>BIC: <%= @billing_bic %></li>
+<li>IBAN: <%= @billing_iban %></li>
+</ul>
+
+<p><b>Addresse de facturation:</b></p>
+<p>
+<% @address = @billing_address %>
+<%= render :partial => 'addresses/show' %>
+</p>
+
+<p><b>Addresse de livraison:</b></p>
+<p>
+<% @address = @shipping_address %>
+<%= render :partial => 'addresses/show' %>
+</p>
+
+<%= link_to 'Afficher', :action => 'show' %> |
+<%= link_to 'Editer', :action => 'edit' %>
+
+<p><%= link_to 'Carnet d\'adresses', :controller => 'addresses', :action => 'list' %></p>

@@ -1,0 +1,64 @@
+<h1>Devis: édition</h1>
+
+<%= form_tag :action => 'update', :id => @quotation do %>
+
+<%= render 'form' %>
+
+<table class="quotation">
+<tr><th>Description</th><th>Quantité</th><th>Prix unitaire</th><th>Position</th><th/></tr>
+
+<%
+@q_items.each do |item|
+  @q_item = item
+-%>
+
+<% if @q_item.product_id %>
+<tr class="product">
+<% else %>
+<tr>
+<% end %>
+
+<%
+# Takes into account old q_item records without a populated description
+# field
+unless @q_item.description
+	product = Product.find( @q_item.product_id )
+	@q_item.description = product.description
+end
+-%>
+
+<td id="description">
+<%= text_field 'q_item[]', 'description', 'size' => 40 %></td>
+<td class="grey"><%= text_field "q_item[]", 'qty', 'size' => 4 %></td>
+<td><%= text_field 'q_item[]', 'price', 'size' => 7 %></td>
+<td>
+<%= link_to 'up', :controller => 'q_items', :action => 'move_up', :id => @q_item.id %> 
+<%= link_to 'down', :controller => 'q_items', :action => 'move_down', :id => @q_item.id %>
+</td>
+<td><%= link_to 'Destroy', { :action => 'destroy_item', :id => @q_item},
+	:confirm => 'Are you sure?' %></td>
+</tr>
+<% end %>
+
+<tr>
+<td id="description">Frais de port</td>
+<td class="grey">1</td>
+<td><%= text_field 'quotation' , 'shipping', 'size' => 3 %></td>
+</tr>
+</table>
+
+<div class="remark">
+<label for="quotation_remark">Remarques</label><br/>
+<%= text_area 'quotation', 'remark', :cols => 40, :rows => 4 %>
+</div>
+
+  <%= submit_tag 'Mettre à jour' %>
+<% end %>
+
+<p/>
+<%= form_tag :action => 'new_line', :id => @quotation.id do %>
+	<%= submit_tag 'Ajouter une ligne' %>
+<% end %>
+
+<p/>
+<%= link_to 'Afficher', :action => 'show', :id => @quotation %>

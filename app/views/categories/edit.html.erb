@@ -1,0 +1,9 @@
+<h1>Edition de la catégorie</h1>
+
+<%= link_to 'Afficher', :action => 'show', :id => @category %> |
+<%= link_to 'Liste', :action => 'list' %>
+
+<%= form_tag :action => 'update', :id => @category do %>
+  <%= render 'form' %>
+  <%= submit_tag 'Mettre à jour' %>
+<% end %>

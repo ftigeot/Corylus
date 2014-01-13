@@ -1,0 +1,13 @@
+<!--[form:quotation]-->
+<p><b>Client:</b></p>
+<select id="quotation_customer_id" name="quotation[customer_id]">
+	<%= options_from_collection_for_select( @customers, "id", "name", @quotation.customer_id ) %>
+</select>
+
+<p><label for="quotation_created_on">Created on</label><br/>
+<%= date_select 'quotation', 'created_on'  %></p>
+
+<p><label for="quotation_updated_on">Updated on</label><br/>
+<%= date_select 'quotation', 'updated_on'  %></p>
+<!--[eoform:quotation]-->
+

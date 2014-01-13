@@ -1,0 +1,15 @@
+<h1>Edition informations fournisseur</h1>
+
+<p>Produit: <%= @product.description %></p>
+<p>Fournisseur: <%= @supplier.name %></p>
+
+
+<%= form_tag :action => 'update_supplier', :id => @ps.id do %>
+<p>Référence</p>
+<input type="text" name="ref_fournisseur" value="<%= @ps.ref_fournisseur %>" size="24">
+
+<p>Prix d'achat</p>
+<input type="text" name="price" value="<%= @ps.price %>" size="10"> €
+
+<p><input type="submit" value="Mettre à jour" /></p>
+<% end %>

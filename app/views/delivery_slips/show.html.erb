@@ -1,0 +1,52 @@
+<h1>Bon de livraison</h1>
+
+<div class="col_container">
+
+<div class="col_left">
+<p><b>Numéro:</b> <%= @dslip.official_id %></p>
+<p><b>Client:</b> <%= @customer.name %></p>
+<p><b>Date:</b> <%= @dslip.created_on %></p>
+
+<% if @dslip.cancelled %>
+<p style="color: red"><b>Non livré: annulation par le client</b></p>
+<% end -%>
+</div>
+
+<div class="col_right">
+<% if @dslip.order_id %>
+<p><%= link_to 'Voir bon de commande', :controller => 'orders', :action => 'show',
+	:id => @dslip.order_id %></p>
+<% end %>
+
+<% if @dslip.invoice_possible? %>
+<p><%= link_to 'Facturer cette livraison',
+	:controller => 'invoices', :action => 'new_partial', :id => @dslip.id %></p>
+<% end %>
+</div>
+
+<div class="col_footer">&nbsp;</div>
+</div>
+
+<div id="quotation">
+<table class="quotation">
+<tr><th>Description</th><th>Quantité commandée</th><th>Livré</th><th>Reste</th></tr>
+<% for item in @items %>
+<tr>
+<% undelivered = item.ordered - item.delivered_todate -%>
+
+<td class="name"><%= item.description %></td>
+<td class="grey"><%= item.ordered %></td>
+<td><%= item.delivered %></td>
+<td class="grey"><%= undelivered %></td>
+</tr>
+<% end %>
+
+</table>
+
+</div>
+<div id="quotationfix">&nbsp;</div>
+
+
+<%= link_to 'Edit', :action => 'edit', :id => @dslip %> | 
+<%= link_to 'Bon de livraison XML', :action => 'bdl', :id => @dslip %> |
+<%= link_to 'Bon de livraison PDF', @dslip.pdf_url %>

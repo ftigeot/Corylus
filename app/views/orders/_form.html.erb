@@ -1,0 +1,18 @@
+<p><b>Client:</b> <%= @order.quotation.customer.name %></p>
+
+<table>
+<tr>
+<td><label for="order_order_num">Numéro de commande</label></td>
+<td><label for="order_order_date">Date de commande</label><td>
+</tr>
+<tr>
+<td><%= text_field 'order', 'order_num', :size => 15 %></td>
+<td><%= date_select 'order', 'order_date' %></td>
+</tr>
+<tr>
+<td colspan=2><label for="order_order_num">Comment</label><td>
+</tr>
+<tr>
+<td colspan=2><%= text_field 'order', 'order_comment', :size => 46 %></td>
+</tr>
+</table>

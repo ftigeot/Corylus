@@ -1,0 +1,8 @@
+<h1>Partenaire: édition</h1>
+
+<%= render :partial => 'partner_bar' %>
+
+<%= form_tag :action => 'update', :id => @partner do %>
+  <%= render 'form' %>
+  <%= submit_tag 'Mettre à jour' %>
+<% end %>

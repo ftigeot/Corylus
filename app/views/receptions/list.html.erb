@@ -1,0 +1,24 @@
+<h1>Réceptions de produits: liste</h1>
+
+<%= render 'topbar' %>
+
+<table>
+<tr><th>Numéro</th><th>Fournisseur</th><th>Créé le</th></tr>
+  
+<%
+for reception in @receptions
+%>
+<tr class="<%= cycle('dark','light') %>">
+	<td><%= reception.id %></td>
+	<td><%= reception.supplier.name %></td>
+	<td><%= reception.created_on %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => reception %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => reception %></td>
+    <td><%= link_to 'Destroy', {:action => 'destroy', :id => reception}, :confirm => 'Are you sure?' %></td>
+</tr>
+<% end %>
+</table>
+
+<%= will_paginate @receptions,
+	:prev_label => '&laquo; Précédent',
+	:next_label => 'Suivant &raquo;' %>

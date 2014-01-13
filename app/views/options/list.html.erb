@@ -1,0 +1,14 @@
+<h2>Liste des options</h2>
+
+<table>
+<tr><th>id</th><th>name</th><th>Description</th></tr>
+<% for option in @options %>
+<tr class="<%= cycle('dark','light') %>">
+<td class="id"><%= option.id %></td>
+<td class="name"><%= link_to option.name, :action => 'edit', :id => option.id %></td>
+<td><%= option.description %></td>
+</tr>
+<% end %>
+</table>
+
+<p><%= link_to 'Nouvelle option', :action => 'new' %></p>

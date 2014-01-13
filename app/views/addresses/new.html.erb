@@ -1,0 +1,10 @@
+<h1>Nouvelle adresse</h1>
+
+<p><b>Entité:</b> <%= @name %></p>
+
+<%= form_tag :action => 'create' do %>
+
+	<%= render 'form' %>
+	<%= submit_tag "Create" %>
+
+<% end %>

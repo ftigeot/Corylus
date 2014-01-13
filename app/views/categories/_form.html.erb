@@ -1,0 +1,13 @@
+<p><label for="category_name">Nom</label><br/>
+<%= text_field 'category', 'name' %></p>
+
+<p><label for="category_parent">Enfant de</label><br/>
+<select id="category_parent_id" name="category[parent_id]">
+<option>N/A</option>
+<%= options_from_collection_for_select(
+	@possible_parents, 'id', 'name', @category.parent_id ) %>
+</select></p>
+
+
+<p><label for="category_description">Description</label><br/>
+<%= text_area 'category', 'description', :cols => 60, :rows => 24 %></p>

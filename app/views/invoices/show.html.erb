@@ -1,0 +1,43 @@
+<%= render :partial => 'invoices/invoices_bar' %>
+
+<% if @invoice.is_credit_note %>
+<h1>Avoir</h1>
+<% else %>
+<h1>Facture</h1>
+<% end %>
+
+<div class="col_container">
+<div class="col_left">
+<p><b>Facture n°:</b> <%= @invoice.public_id %></p>
+<p><b>Client:</b> <%= link_to @quotation.customer.name, :controller => 'partners',
+:action => 'show', :id => @quotation.customer.id %></p>
+<p><b>Date:</b> <%= @invoice.created_on %></p>
+<p><b>Date d'échéance:</b> <%= @invoice.due_date %></p>
+<p><b>Acompte:</b> <%= fmt_price(@invoice.advance) %></p>
+
+<% if @invoice.paiement_date.nil? %>
+<p style="color:red">Facture impayée</p>
+<% else %>
+<p>Facture payée le <%=h @invoice.paiement_date %></p>
+<% end %>
+</div>
+
+<div class="col_right">
+<p><%= link_to 'Voir bon de commande', :controller => 'orders', :action => 'show',
+	:id => @invoice.order_id %></p>
+
+<% if @invoice.paiement_date.nil? %>
+<p><%= link_to 'Entrer date paiement', :action => 'pay', :id => @invoice.id %></p>
+<% end %>
+</div>
+
+<div class="col_footer">&nbsp;</div>
+</div>
+
+<%= render 'shared/show_quotation' %>
+
+<%= link_to 'Facture XML', :action => 'facture', :id => @invoice, :format => 'xml' %> |
+<%= link_to 'Facture PDF', @pdf_url %> |
+<%= link_to 'Enveloppe XML', :controller => 'addresses', :action => 'envelope',
+	:id => @invoice.address_id, :format => 'xml' %> |
+<%= link_to 'Enveloppe PDF', @invoice.address.pdf_url %>

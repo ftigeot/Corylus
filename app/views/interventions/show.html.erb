@@ -1,0 +1,23 @@
+<h1>Intervention</h1>
+
+<p>
+<%= render :partial => 'menubar' %> | 
+<%= link_to 'Edit', :action => 'edit', :id => @intervention.id %>
+</p>
+
+
+<p><b>Customer:</b>
+<%= link_to @intervention.customer.name, :controller => 'partners',
+	:action => 'show', :id => @intervention.customer.id %></p>
+<p><b>Date:</b> <%= @intervention.created_at %></p>
+
+<p><b>Summary:</b> <%= @intervention.summary %></p>
+
+<p><b>Duration:</b>
+<%= @intervention.days %> days, 
+<%= @intervention.hours %> hours</p>
+
+<p><b>Description:</b></p>
+<div class="box">
+<p><%=h @intervention.description %></p>
+</div>

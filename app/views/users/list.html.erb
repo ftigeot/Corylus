@@ -1,0 +1,19 @@
+<h1>Utilisateurs</h1>
+
+<p><%= link_to 'Nouvel utilisateur interne', :action => 'create_internal' %> | 
+<%= link_to 'Nouvel utilisateur externe', :action => 'create' %></p>
+
+<p><%= link_to 'Changer de mot de passe', :action => 'change_password' %></p>
+
+<p><%= link_to 'Logout', :controller => 'users', :action => 'logout' %></p>
+
+<hr/>
+
+<table>
+<tr><th>id</th><th>login</th><th>Partenaire</th><th>email</th><th>created_at</th><th>updated_at</th></tr>
+<% for u in @users %>
+<% partner = u.partner_id.nil? ? 'nil' : u.partner.name -%>
+<tr><td><%= u.id %></td><td><%=h u.login %></td><td><%=h partner %></td>
+<td><%=h u.email %></td><td><%= u.created_at %></td><td><%= u.updated_at %></td></tr>
+<% end -%>
+</table>

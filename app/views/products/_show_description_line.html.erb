@@ -1,0 +1,12 @@
+<tr>
+<td><%= text_field 'line[]', :description, :size => 40 %></td>
+<td>Qté.: <%= text_field 'line[]', :qty, :size => 2 %></td>
+<td>
+	<%= link_to 'up',
+		:controller => 'product_lines',
+		:action => 'move_up', :id => @line.id %>
+	<%= link_to 'down',
+		:controller => 'product_lines',
+		:action => 'move_down', :id => @line.id %>
+</td>
+</tr>

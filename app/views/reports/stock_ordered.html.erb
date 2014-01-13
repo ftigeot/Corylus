@@ -1,0 +1,17 @@
+<h2>Liste des produits commandés par les clients</h2>
+
+<div id="quotation">
+<table class="quotation">
+<tr>
+<th>Nom</th><th>Quantité en stock</th><th>Commande client</th><th>Commande fournisseur</th></tr>
+
+<% for l in @lines %>
+<tr class="<%= cycle('dark','light') %>">
+<td class="name"><%= link_to l.description, :controller => 'Products',
+	:action => 'show', :id => l.product_id %></td>
+<td>0</td>
+<td><%= l.undelivered %></td>
+<td>0</td>
+</tr>
+<% end %>
+</table>

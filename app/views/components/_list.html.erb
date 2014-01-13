@@ -1,0 +1,46 @@
+<%= form_tag :controller => 'components', :action => 'update', :owner_id => @product.id do %>
+
+<table class="component_list">
+<tr><th>id</th><th>Description</th><th>Quantité</th><th>Prix produit</th><th>Montant</th><th/><th colspan="2">Achat (min/max)</th></tr>
+<% components_price = 0 %>
+
+<tbody id="sortable">
+<% for @component in @components %>
+<%
+price = @component.product.public_price
+min = ProductSupplier.minimum :price,
+	:conditions => ['product_id = ?', @component.product.id]
+max = ProductSupplier.maximum :price,
+	:conditions => ['product_id = ?', @component.product.id]
+%>
+<tr class="<%= cycle('dark','light') %>" id="item_<%= @component.id %>">
+<td><%= @component.id %></td>
+<td class="name"><%= link_to @component.product.name,
+	:controller => 'products', :action => 'show', :id => @component.product.id %></td>
+<td><%= text_field 'component[]', 'qty', :size => 1 %></td>
+<td><%= fmt_price(price) %></td>
+<td><%= fmt_price(price * @component.qty) %></td>
+<td class="grey">&nbsp;</td>
+<td><%= fmt_price(min) -%></td>
+<td><%= fmt_price(max) -%></td>
+</tr>
+<% components_price += @component.qty * price %>
+<% end %>
+</tbody>
+<th colspan="4">Prix des composants:</th><th><%= components_price %></th><th colspan="2"/>
+</table>
+
+
+
+<%= submit_tag 'Mise à jour' %>
+<% end %>
+
+
+<%= javascript_include_tag 'prototype', 'effects', 'dragdrop' %>
+
+<%= sortable_element 'sortable', :update => 'component_list', :tag => 'tr',
+	:url => {
+		:controller => :components, :action => :update_positions,
+		:owner_id => @product.id
+	},
+	:complete => visual_effect(:highlight, 'component_list') %>

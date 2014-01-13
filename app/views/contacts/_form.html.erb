@@ -1,0 +1,24 @@
+<%= hidden_field 'contact', 'partner_id' %>
+
+<table>
+<tr><th>Civilité</th><th>Prénom</th><th>Nom</tr>
+<tr>
+<td><%= text_field 'contact', 'social_title', :size => 3 %></td>
+<td><%= text_field 'contact', 'firstname', :size => 20 %></td>
+<td><%= text_field 'contact', 'lastname', :size => 20 %></td>
+</tr>
+</table>
+
+<p><label for="contact_service">Service</label><br/>
+<%= text_field 'contact', 'service', :size => 25 %></p>
+
+<p><label for="contact_phone">Téléphone fixe</label><br/>
+<%= text_field 'contact', 'phone', :size => 14 %></p>
+<p><label for="contact_mobile">Téléphone mobile</label><br/>
+<%= text_field 'contact', 'mobile', :size => 14 %></p>
+
+<p><label for="contact_email">Email</label><br/>
+<%= text_field 'contact', 'email', :size => 31 %></p>
+
+<p>Participation à des mailings : 
+<%= check_box 'contact', 'mailing_wanted' %></p>

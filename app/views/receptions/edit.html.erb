@@ -1,0 +1,70 @@
+<%= javascript_include_tag 'prototype', 'dragdrop' %>
+
+<h1>Nouvelle réception de produits</h1>
+
+<%= form_tag :action => 'update', :id => @reception.id do %>
+<%= render 'form' %>
+
+<table class="borders">
+<tr><th>Description</th><th>Quantité</th><th/></tr>
+
+<% @reception.reception_items.each do |reception_item| -%>
+<% @reception_item = reception_item -%>
+<% @reception_item.product.nil? ? product_name = 'None' : product_name = @reception_item.product.name %>
+<tr>
+<td class="name"><%= text_field 'reception_item[]', 'description', 'size' => 40 %></td>
+<td class="grey"><%= text_field "reception_item[]", 'qty', 'size' => 4 %></td>
+
+<td class="grey">
+<%= select 'reception_item[]', 'status',
+	{ 'Livré' => 'ok', 'Annulé' => 'canceled' } %>
+</td>
+
+</tr><tr class="border">
+
+<td colspan="3">
+<table style="width: 100%;">
+<tr>
+<td class="left"><b>Numéros de série :</b></td>
+<td class="right"><%= text_area "reception_item[]", 'serials', :cols => 40, :rows => 1 %></td>
+<td><%= link_to 'Destroy', { :action => 'destroy_item', :id => @reception_item},
+	:confirm => 'Are you sure?' %></td>
+</tr>
+</table>
+</td>
+
+</tr>
+<% end %>
+</table>
+
+  <%= submit_tag 'Mettre à jour' %>
+<% end %>
+
+<%= form_tag :action => 'empty_line', :id => @reception.id do %>
+<%= submit_tag 'Ajouter une ligne vide' %>
+<% end %>
+
+<p><%= link_to 'Show', :action => 'show', :id => @reception.id %></p>
+
+<hr/>
+
+<div id="busy" style="float:right;display:none;"> Busy... </div>
+
+<%= form_tag :action => 'new_line', :id => @reception.id do %>
+	<label for="product_field">Produit sélectionné:</label><div id='product_field'></div>
+	<%= submit_tag 'Ajouter une ligne produit' %>
+<% end %>
+
+<label for="ssid">Catégories:</label>
+<select id="ssid" name="ssid">
+<option value="0" selected="selected">&nbsp;</option>
+<%= options_from_collection_for_select( @categories, 'id', 'name' ) %>
+</select>
+
+<%= observe_field( :ssid, :update => "browse_menu2",
+  :url => { :action => 'browse_next_ajax', :n => 2},
+  :with => "'id='+value",
+  :loading  => 'Element.show("busy"); Element.hide("browse_menu2");',
+  :complete => 'Element.show("browse_menu2"); Element.hide("busy");' ) %>
+
+<div id="browse_menu2"/>

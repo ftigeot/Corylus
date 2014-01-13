@@ -1,0 +1,9 @@
+<table>
+<% for category in @categories %>
+  <tr class="<%= cycle('dark','light') %>">
+    <td><%= link_to category.name, :action => 'show', :id => category %></td>
+    <td><%= link_to 'Editer', :action => 'edit', :id => category %></td>
+    <td><%= link_to 'Supprimer', {:action => 'destroy', :id => category}, :confirm => 'En êtes-vous sûr ?' %></td>
+  </tr>
+<% end %>
+</table>

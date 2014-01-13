@@ -1,0 +1,13 @@
+<%= link_to 'Voir', :action => 'show', :id => @partner %> |
+<%= link_to 'Editer', :action => 'edit', :id => @partner %> |
+<%= link_to 'Ajout contact', :controller => 'contacts', :action => 'new', :id => @partner.id %> |
+<%= link_to 'Ajout évènement', :action => 'new_event', :id => @partner.id %> | 
+<%= link_to 'Carnet d\'adresses', :controller => 'addresses', :action => 'list', :id => @partner.id %> |
+
+<%= link_to 'Past invoices', :action => 'show_invoices', :id => @partner.id %> |
+
+<% if @partner.is_supplier -%>
+<%= link_to 'Past orders', :action => 'show_orders', :id => @partner.id %> |
+<% end -%>
+
+<%= link_to 'Factures impayées', :action => 'list_unpaid', :id => @partner.id %>

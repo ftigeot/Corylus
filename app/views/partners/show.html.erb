@@ -1,0 +1,53 @@
+<h1>Partenaire: <%= @partner.name %></h1>
+
+<%= render :partial => 'partner_bar' %>
+
+<div class="col_container">
+
+<div class="col_left">
+<p><b>Nom:</b> <%= @partner.name %><br/>
+<b>Nom usuel:</b> <%= @partner.long_name %><br/>
+<b>Particulier:</b> <%= @partner.is_individual ? 'Oui' : 'Non' %></p>
+
+<p><b>Client:</b> <%= @partner.is_customer ? 'Oui' : 'Non' %><br/>
+<b>Fournisseur:</b> <%= @partner.is_supplier ? 'Oui' : 'Non' %></p>
+
+<p><b>Date de création</b> <%= @partner.created_on %><br/>
+<b>Origine:</b> <%= @partner.origin %></p>
+
+<p><b>Téléphone:</b> <%= @partner.phone %><br/>
+<b>Fax:</b> <%= @partner.fax %><br/>
+<b>Web:</b> <%= @partner.web %></p>
+<b>Pays:</b> <%= @partner.country.name %></p>
+
+<p><b>Délai de paiement:</b> <%= @partner.payment_delay %></p>
+</div>
+
+<div class="col_right">
+<div class="address_box">
+<b>Adresse de livraison</b>
+<% @address = @partner.shipping_address %>
+<%= render :partial => 'addresses/show' %>
+</div>
+</div>
+
+<div class="col_footer">&nbsp;</div>
+</div>
+
+<p><b>Commentaire:</b>
+<div class="box">
+<p><%=h @partner.comment %></p>
+</div>
+
+
+<p><b>Historique client:</b></p>
+<% for event in @events %>
+<div class="box">
+<h2>Date: <%= event.created_on %></h2>
+<p><%=h event.content %></p>
+<p><%= link_to 'Edit event', :action => 'edit_event', :id => event.id %></p>
+</div>
+<% end %>
+
+<p><b>Contacts:</b></p>
+<%= render :partial => 'contacts/list' %>

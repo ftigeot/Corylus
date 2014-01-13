@@ -1,0 +1,17 @@
+<h1>Nouveau bon de commande fournisseur</h1>
+
+<h2>Fournisseur:</h2>
+
+<%= form_tag :action => 'create' do %>
+
+<select id="order_supplier_id" name="order[supplier_id]">
+<%= options_from_collection_for_select(@suppliers, 'id', 'name') %>
+</select>
+
+<h2>Date de création:</h2>
+<%= date_select 'order', 'created_on'  %>
+
+<%= render 'show_cart' %>
+
+  <%= submit_tag "Create" %>
+<% end %>

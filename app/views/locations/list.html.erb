@@ -1,0 +1,15 @@
+<h2>Liste des entrepots</h2>
+
+<div id="quotation">
+<table class="quotation">
+<tr><th>Nom</th><th>Créé le</th></tr>
+
+<% for location in @locations %>
+<tr class="<%= cycle('dark','light') %>">
+<td><%= link_to location.name, :action => 'edit', :id => location.id %></td>
+<td><%= location.created_on %></td>
+</tr>
+<% end -%>
+</table>
+
+<%= link_to 'Nouvel entrepot', :action => 'new' -%>
