@@ -48,5 +48,5 @@
 
 
 <%= link_to 'Edit', :action => 'edit', :id => @dslip %> | 
-<%= link_to 'Bon de livraison XML', :action => 'bdl', :id => @dslip %> |
+<%= link_to 'Bon de livraison XML', :action => 'show', :format => 'xml', :id => @dslip %> |
 <%= link_to 'Bon de livraison PDF', @dslip.pdf_url %>

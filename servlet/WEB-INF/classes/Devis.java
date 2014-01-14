@@ -96,7 +96,7 @@ public class Devis extends HttpServlet {
 			return;
 		}
 
-		String xml_url  = "http://" + request_host + "/quotations/devis/" + request_id;
+		String xml_url  = "http://" + request_host + "/quotations/show/" + request_id + ".xml";
 		File xslFile = new File( baseDir, xslFileName );
 
 		Source xmlSource = new StreamSource( xml_url );

@@ -27,6 +27,10 @@ class QuotationsController < ApplicationController
     filename = Setting.company_name + "_devis_" + @quotation.id.to_s + ".pdf"
     @pdf_url = URI.parse(TOMCAT_BASE +
 	"Devis.pdf?host=#{h}&id=#{@quotation.id}&filename=#{filename}").to_s
+  # Required for XML views
+    @company_name = Setting.company_name
+    @billing_address = Address.find( Setting.billing_address_id )
+    @address = @quotation.customer.billing_address
   end
 
   def edit
@@ -63,15 +67,6 @@ class QuotationsController < ApplicationController
     quotation_id = q_item.quotation_id
     q_item.destroy
     redirect_to :action => 'edit', :id => quotation_id
-  end
-
-  def devis
-    @quotation = Quotation.find(params[:id])
-    @company_name = Setting.company_name
-    @billing_address = Address.find( Setting.billing_address_id )
-    @q_items = QItem.find :all, :conditions => [ "quotation_id = ?", @quotation.id], :order => 'position'
-    @address = @quotation.customer.billing_address
-    render :layout => false
   end
 
   # demande un devis pdf à un servlet tomcat et retourne le résultat

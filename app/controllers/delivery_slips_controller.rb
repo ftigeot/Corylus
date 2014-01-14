@@ -62,30 +62,14 @@ class DeliverySlipsController < ApplicationController
     @quotation = @dslip.order.quotation
     @items = @dslip.items
     @address = @dslip.address
-  end
-
-  def bdl
-    show
     @order = @dslip.order
     if @order
       @order_num = @order.order_num
       @order_date = @order.order_date
     end
-    @address = @dslip.address
     @company_name = Setting.company_name
     @billing_address = Address.find( Setting.billing_address_id )
     @dest_name = @address.partner.name
-    render :layout => false
-  end
-
-  def bdl_pdf
-    @dslip = DeliverySlip.find(params[:id])
-    require 'net/http'
-    @host = request.host
-    tomcat_url = URI.parse( TOMCAT_BASE + "BonLivraison.pdf?host=#{@host}&id=#{@dslip.id}")
-    pdf = Net::HTTP.get(tomcat_url)
-    response.headers['Content-Disposition'] = "attachment; filename=\"BL #{@dslip.official_id}.pdf\""
-    render :text => pdf, :content_type => 'application/pdf'
   end
 
   def edit
@@ -93,7 +77,6 @@ class DeliverySlipsController < ApplicationController
     @quotation = @dslip.order.quotation
     @items = @dslip.items
   end
-
 
   def update
     @dslip = DeliverySlip.find(params[:id])

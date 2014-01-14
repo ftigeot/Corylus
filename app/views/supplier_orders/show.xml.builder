@@ -52,7 +52,7 @@ xml.contact_email( @contact_email )
 			xml.price( @order.shipping )
 		end
 	end
-	
+
 	if @order.remark
 		xml.comment( @order.remark )
 	end

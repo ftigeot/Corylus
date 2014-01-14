@@ -46,14 +46,13 @@ class ApplicationController < ActionController::Base
 
   # Cette fonction est la source de @user
   def check_authorization
-    # 1. Pas d'identification pour les requêtes susceptibles d'être faites
-    # par tomcat
+    # 1. no authentication for requests which can be made by Tomcat
     no_session_ok = false
-    no_session_ok = true if check_tomcat_ok('quotations','devis')
-    no_session_ok = true if check_tomcat_ok('delivery_slips','bdl')
+    no_session_ok = true if check_tomcat_ok('quotations','show')
+    no_session_ok = true if check_tomcat_ok('delivery_slips','show')
     no_session_ok = true if check_tomcat_ok('invoices','facture')
     no_session_ok = true if check_tomcat_ok('addresses','envelope')
-    no_session_ok = true if check_tomcat_ok('supplier_orders','bon_commande')
+    no_session_ok = true if check_tomcat_ok('supplier_orders','show')
     no_session_ok = true if check_tomcat_ok('expense_reports','show')
     no_session_ok = true if check_tomcat_ok('partners','list_unpaid')
     return if (no_session_ok)

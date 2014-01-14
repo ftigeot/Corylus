@@ -96,7 +96,7 @@ public class BonLivraison extends HttpServlet {
 			return;
 		}
 
-		String xml_url  = "http://" + request_host + "/delivery_slips/bdl/" + request_id;
+		String xml_url  = "http://" + request_host + "/delivery_slips/show/" + request_id + ".xml";
 		File xslFile = new File( baseDir, xslFileName );
 
 		Source xmlSource = new StreamSource( xml_url );

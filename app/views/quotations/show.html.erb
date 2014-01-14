@@ -31,7 +31,8 @@
 <% else %>
 Edit |
 <% end %>
-<%= link_to 'Devis XML', :action => 'devis', :id => @quotation %> |
+<%= link_to 'Devis XML', :action => 'show',
+	:format => 'xml', :id => @quotation %> |
 <%= link_to 'Devis PDF', @pdf_url %>
 
 <p><%= link_to 'Charger Panier', :controller => 'gescom', :action => 'load_cart', :id => @quotation %> | 

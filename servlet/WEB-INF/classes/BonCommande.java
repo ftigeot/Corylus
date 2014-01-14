@@ -96,7 +96,7 @@ public class BonCommande extends HttpServlet {
 			return;
 		}
 
-		String xml_url  = "http://" + request_host + "/supplier_orders/bon_commande/" + request_id;
+		String xml_url  = "http://" + request_host + "/supplier_orders/show/" + request_id + ".xml";
 		File xslFile = new File( baseDir, xslFileName );
 
 		Source xmlSource = new StreamSource( xml_url );

@@ -76,35 +76,16 @@ class SupplierOrdersController < ApplicationController
     filename = "Bon-commande-" + @order.official_id.to_s + ".pdf"
     @pdf_url = URI.parse(TOMCAT_BASE +
 	"BonCommande.pdf?host=#{h}&id=#{@order.id}&filename=#{filename}").to_s
-  end
-
-  def bon_commande
-    show
+  # Required by XML documents
     @supplier = @order.supplier
     @supplier_address = @supplier.primary_address
     @billing_address = Address.find( Setting.billing_address_id )
     @delivery_address = @order.shipping_address
-    # FIXME: Appel depuis Tomcat: pas de session
+    # FIXME: No session if called from a Tomcat servlet
     if (@user.nil?)
       @user = User.find(2)
     end
     @contact_email = Setting.contact_email
-    if (@supplier_address.nil?)
-      flash[:notice] = "Supplier's main address not defined"
-      render :action => 'show'
-    else
-      render :layout => false
-    end
-  end
-
-  def bon_commande_pdf
-    @order = SupplierOrder.find(params[:id])
-    require 'net/http'
-    @host = request.host
-    tomcat_url = URI.parse( TOMCAT_BASE + "BonCommande.pdf?host=#{@host}&id=#{@order.id}")
-    pdf = Net::HTTP.get(tomcat_url)
-    response.headers['Content-Disposition'] = "attachment; filename=\"Bon-commande-#{@order.official_id}.pdf\""
-    render :text => pdf, :content_type => 'application/pdf'
   end
 
   def edit

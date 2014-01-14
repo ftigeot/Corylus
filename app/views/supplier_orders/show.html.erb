@@ -27,7 +27,7 @@
 
 
 <%= link_to 'Edit', :action => 'edit', :id => @order %> | 
-<%= link_to 'Bon de commande XML', :action => 'bon_commande', :id => @order %> |
+<%= link_to 'Bon de commande XML', :action => 'show', :format => 'xml', :id => @order %> |
 <%= link_to 'Bon de commande PDF', @pdf_url %>
 
 <p><%= link_to 'Charger Panier', :action => 'load_cart', :id => @order %></p>
