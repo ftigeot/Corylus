@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<bdc id="Bidon-901">
+
+  <date>13/01/2010</date>
+  <username>Monsieur Dupont</username>
+
+  <company>
+    <name>Pâtisserie Dupont</name>
+    <addr1>Place des vergers</addr1>
+    <addr2></addr2>
+    <postcode>45300</postcode>
+    <city>Pithiviers</city>
+    <country>France</country>
+  </company>
+
+  <distributor>
+    <name>Big Distributor</name>
+    <addr1>Rue des Hauts Champs</addr1>
+    <postcode>45000</postcode>
+    <city>Orléans</city>
+    <country>France</country>
+  </distributor>
+
+  <delivery>
+    <name>Pâtisserie Dupont</name>
+    <addr1>3 rue de l'Horloge</addr1>
+    <addr2></addr2>
+    <postcode>45300</postcode>
+    <city>Pithiviers</city>
+    <country>France</country>
+  </delivery>
+
+  <item>
+    <ref>1431-23</ref>
+    <name>Pâte feuilletée pur beurre (bloc de 5kg)</name>
+    <qty>2</qty>
+    <price>85.20</price>
+    <vat>5.5</vat>
+  </item>
+
+  <item>
+    <ref>2827-41</ref>
+    <name>Crème pâtissière prête à l'emploi (seau de 10 l)</name>
+    <qty>3</qty>
+    <price>28.0</price>
+    <vat>5.5</vat>
+  </item>
+
+  <item>
+    <ref/>
+    <name>Frais de port</name>
+    <qty>1</qty>
+    <price>23.0</price>
+    <vat>20.0</vat>
+  </item>
+
+  <comment>Livraison groupée</comment>
+
+<vat_subtotal>
+	<rate>5.5</rate>
+	<value>13.99</value>
+</vat_subtotal>
+<vat_subtotal>
+	<rate>20.0</rate>
+	<value>4.60</value>
+</vat_subtotal>
+
+</bdc>

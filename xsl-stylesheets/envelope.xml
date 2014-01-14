@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<envelope>
+  <dest>
+	<name>Jean Martin</name>
+	<addr1>12 rue de Montjay</addr1>
+	<postcode>91400</postcode>
+	<city>Orsay</city>
+	<country>France</country>
+  </dest>
+</envelope>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<bdl id="PAK-3104-5">
+
+<date>02/02/2010</date>
+
+<company>
+	<name>Pâtisserie Dupont</name>
+	<addr1>Place des vergers</addr1>
+	<addr2></addr2>
+	<postcode>45300</postcode>
+	<city>Pithiviers</city>
+	<country>France</country>
+</company>
+
+<customer>
+	<name>Jean Martin</name>
+	<addr1>12 rue de Montjay</addr1>
+	<postcode>91400</postcode>
+	<city>Orsay</city>
+	<country>France</country>
+</customer>
+
+<item>
+	<name>Apple Pie</name>
+	<qty>2</qty>
+</item>
+
+<item>
+	<name>Pithiviers</name>
+	<qty>1</qty>
+</item>
+
+</bdl>

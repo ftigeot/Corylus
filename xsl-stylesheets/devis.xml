@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<devis id="1552">
+
+<date>28/01/2010</date>
+
+<company>
+	<name>Pâtisserie Dupont</name>
+	<addr1>Place des vergers</addr1>
+	<addr2></addr2>
+	<postcode>45300</postcode>
+	<city>Pithiviers</city>
+	<country>France</country>
+</company>
+
+<customer>
+	<name>Jean Martin</name>
+	<addr1>12 rue de Montjay</addr1>
+	<postcode>91400</postcode>
+	<city>Orsay</city>
+	<country>France</country>
+</customer>
+
+<item>
+	<name>Apple Pie</name>
+	<qty>2</qty>
+	<price>16.99</price>
+	<vat>5.5</vat>
+</item>
+
+<item>
+	<name>Pithiviers</name>
+	<qty>1</qty>
+	<price>23.99</price>
+	<vat>5.5</vat>
+</item>
+
+<vat_subtotal>
+	<rate>5.5</rate>
+	<value>3.19</value>
+</vat_subtotal>
+
+</devis>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statement>
+
+<date>2010-03-07</date>
+
+<company>
+	<name>Pâtisserie Dupont</name>
+	<addr1>Place des Vergers</addr1>
+	<addr2></addr2>
+	<postcode>45300</postcode>
+	<city>Pithiviers</city>
+	<country>France</country>
+</company>
+
+<customer>
+	<name>Jean Martin</name>
+	<addr1>12 rue de Montjay</addr1>
+	<postcode>91400</postcode>
+	<city>Orsay</city>
+	<country>France</country>
+</customer>
+
+<invoice>
+	<num>IV-47</num>
+	<date>7 Février 2010</date>
+	<order_num>CC-5431</order_num>
+	<due_date>7 Février 2010</due_date>
+	<sum>61.16</sum>
+	<unpaid>31.16</unpaid>
+</invoice>
+
+</statement>

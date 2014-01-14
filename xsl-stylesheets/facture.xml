@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<invoice id="IV-47">
+
+<date>7 Février 2010</date>
+<credit_note>false</credit_note>
+
+<company>
+	<name>Pâtisserie Dupont</name>
+	<addr1>Place des Vergers</addr1>
+	<addr2></addr2>
+	<postcode>45300</postcode>
+	<city>Pithiviers</city>
+	<country>France</country>
+</company>
+
+<customer>
+	<name>Jean Martin</name>
+	<addr1>12 rue de Montjay</addr1>
+	<postcode>91400</postcode>
+	<city>Orsay</city>
+	<country>France</country>
+</customer>
+
+<commande>
+	<num>CC-5431</num>
+	<date>28/01/2010</date>
+</commande>
+
+<advance>30.00</advance>
+<packing_slip>PAK-3104-5</packing_slip>
+
+<item>
+	<name>Apple Pie</name>
+	<qty>2</qty>
+	<price>16.99</price>
+	<vat>5.5</vat>
+</item>
+
+<item>
+	<name>Pithiviers</name>
+	<qty>1</qty>
+	<price>23.99</price>
+	<vat>5.5</vat>
+</item>
+
+<vat_subtotal>
+	<rate>5.5</rate>
+	<value>3.19</value>
+</vat_subtotal>
+
+</invoice>
