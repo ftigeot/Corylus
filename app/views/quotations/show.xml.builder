@@ -33,6 +33,7 @@ xml.devis('id' => @quotation.id ) do
 			end
 			xml.qty( q_item.qty ) if q_item.qty
 			xml.price( q_item.price ) if q_item.price
+			xml.vat(q_item.vat) if q_item.vat
 		end
 	end
 
@@ -41,11 +42,19 @@ xml.devis('id' => @quotation.id ) do
 			xml.name( "Frais de port" )
 			xml.qty( 1 )
 			xml.price( @quotation.shipping )
+			xml.vat( @quotation.shipping )
 		end
 	end
 
 	if @quotation.remark
 		xml.remark( @quotation.remark )
+	end
+
+	for	vr in @quotation.vat_rates
+		xml.vat_subtotal do
+			xml.rate( vr.rate )
+			xml.value( vr.value )
+		end
 	end
 
 end
