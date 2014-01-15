@@ -138,6 +138,7 @@ class ProductsController < ApplicationController
       flash[:notice] = 'Product was successfully updated.'
       redirect_to :action => 'show', :id => @product
     else
+      flash[:error] = 'Failed to update product data'
       render :action => 'edit'
     end
     @product.move_to_bottom if (@product.category != old_category)
