@@ -57,7 +57,7 @@ class ProductsController < ApplicationController
 
   def zclone
     @product = Product.find(params[:id])
-    @clone = @product.clone
+    @clone = @product.dup
     @clone.name = 'Clone de ' + @clone.name
     @clone.created_on = Date.today
     @clone.salable = false

@@ -107,7 +107,7 @@ class QuotationsController < ApplicationController
     @quotation = Quotation.find(params[:id])
     @q_items = QItem.find :all, :conditions => ['quotation_id = ?', @quotation.id],
 		:order => 'position'
-    q2 = @quotation.clone
+    q2 = @quotation.dup
     q2.created_on = Date.today
     q2.updated_on = Date.today
     for qi in @q_items do
