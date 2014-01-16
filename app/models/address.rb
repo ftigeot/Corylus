@@ -42,9 +42,10 @@ class Address < ActiveRecord::Base
 
   def pdf_url
     h = $request_host
-    filename = Setting.company_name + "_enveloppe_" + self.id.to_s + ".pdf"
+    src_url = "http://#{h}/addresses/envelope/" + self.id.to_s + ".xml"
+    fname = Setting.company_name + "_enveloppe_" + self.id.to_s + ".pdf"
     return URI.parse(AppConfig.tomcat_base +
-    	"Enveloppe.pdf?host=#{h}&id=#{self.id}&filename=#{filename}").to_s
+    	"FopPDF?src=#{src_url}&xsl=envelope.xsl&filename=#{fname}").to_s
   end
 
 end

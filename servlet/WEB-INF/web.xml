@@ -26,11 +26,6 @@
 	</servlet>
 
 	<servlet>
-		<servlet-name>Enveloppe</servlet-name>
-		<servlet-class>Enveloppe</servlet-class>
-	</servlet>
-
-	<servlet>
 		<servlet-name>FopPDF</servlet-name>
 		<servlet-class>FopPDFServlet</servlet-class>
 	</servlet>
@@ -53,11 +48,6 @@
 	<servlet-mapping>
 		<servlet-name>BonCommande</servlet-name>
 		<url-pattern>/BonCommande.pdf</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>Enveloppe</servlet-name>
-		<url-pattern>/Enveloppe.pdf</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
