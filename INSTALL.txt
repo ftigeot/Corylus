@@ -1,0 +1,77 @@
+Installation instructions
+=========================
+
+
+Required software
+
+* PostgreSQL
+
+* Ruby 2.0 or more recent
+  Ruby 1.9.x will not work due to beeing unable to process UTF-8 data
+  by default
+
+* (optional) a Tomcat installation with Apache Fop
+
+
+Required Ruby gems:
+
+These may not be packaged on all operating systems
+
+* Ruby on Rails 3.2.0 or more recent _in the 3.2 branch_
+
+* pg
+
+* will_paginate
+
+* puma (web server, can be replaced by something else)
+
+
+
+Installation
+
+1. Create a new PostgreSQL database
+
+2. Create the database structure
+
+   The db/create.sh shell script exists for this purpose. It needs to
+   be adapted to your local installation.
+
+3. Configure the database parameters in config/database.yml
+
+4. Set up a database backup routine
+   This of course has nothing to do with Corylus installation per se but
+   is only good practice.
+
+5. Configure the tomcat url in config/settings.yml
+   Tomcat is only needed to generate PDF versions of your documents; its
+   use is optional but the file needs to exist.
+
+6. Make sure the Corylus installation directory can be accessed by
+   your web server user.
+   
+   Ruby on Rails stores session data in cookies, which requires
+   a secret character string to be generated.
+   The first time Corylus is run, it will generate a new secret and write
+   it in a file named "secret-token.txt" in the root of the Corylus
+   directory
+
+7. Test the installation by running the Puma web server
+   
+   * rc.d/corylus.sh exists for that purpose
+
+   * It needs to be customized a bit
+   
+   * Setting for example BIND_IP_PORT to [::1]:3000 will make Corylus
+     available on http://localhost:3000/
+
+   * If you point a web browser to this URL, you should now see the
+     application login page
+
+8. Use the default administrator account to log in:
+
+   login: admin
+   password: admin
+
+   You can now configure the application settings.
+   It is recommanded you change your administrator password and create a
+   non-privileged user.
