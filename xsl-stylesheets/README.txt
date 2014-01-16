@@ -4,7 +4,7 @@ ready for printing.
 
 How this works:
 
-- Important parts of the document is first written in XML format (content
+- Important parts of the document are first written in XML format (content
   only, no style)
 
 - This first XML description is then converted to a FO document with the
