@@ -2,7 +2,6 @@ OBJS=	Devis.class \
 		Facture.class \
 		BonLivraison.class \
 		BonCommande.class \
-		Enveloppe.class \
 		FopPDFServlet.class
 
 .SUFFIXES: .java .class
