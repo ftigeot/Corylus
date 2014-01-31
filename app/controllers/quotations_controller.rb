@@ -111,7 +111,7 @@ class QuotationsController < ApplicationController
     q2.created_on = Date.today
     q2.updated_on = Date.today
     for qi in @q_items do
-      q2.q_items << qi.clone
+      q2.q_items << qi.dup
     end
     q2.save!
     redirect_to :controller => 'quotations', :action => 'list'
