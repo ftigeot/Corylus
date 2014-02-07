@@ -66,6 +66,7 @@ class SupplierOrdersController < ApplicationController
       soi.description = product.description
       soi.price = sp_price( supplier, product )
       soi.qty = item.qty
+      soi.vat = product.vat
       @order.so_items << soi
     end
 
@@ -94,6 +95,9 @@ class SupplierOrdersController < ApplicationController
     @order = SupplierOrder.find(params[:id])
     @items = @order.so_items
     @receptions = @order.receptions
+    @total_ht = @order.total_ht
+    @vat_rates = @order.vat_rates
+    @total_ttc = @order.total_ttc
     h = request.host
     filename = "Bon-commande-" + @order.official_id.to_s + ".pdf"
     @pdf_url = URI.parse(TOMCAT_BASE +

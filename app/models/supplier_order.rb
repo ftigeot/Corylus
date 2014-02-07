@@ -38,18 +38,55 @@ class SupplierOrder < ActiveRecord::Base
     return subtotal
   end
 
-  def vat_rate
-    return self.supplier.vat
+  # Returns an array containing the distinct VAT rates of the products
+  # and the total sum associated with each VAT rate
+  def vat_rates( _shipping = self.shipping )
+
+    rates = ActiveRecord::Base.connection.select_values("
+    	select distinct vat from so_items
+    	where supplier_order_id = #{id}
+    	and product_id is not null
+    ")
+
+    # Also take shipping into account
+    str = self.shipping_tr
+    tmp_shipping = _shipping.nil? ? 0 : _shipping
+    if ((tmp_shipping > 0) && !rates.include?(str.to_s))
+      rates.push str
+    end
+
+    vat_rates = []
+    for r in rates
+    	vr = VatRate.new
+    	vr.rate = r.to_f
+    	vr.value = ActiveRecord::Base.connection.select_value("
+    		select sum( qty * price * vat ) from so_items
+    		where supplier_order_id = #{id}
+    		and product_id is not null
+    		and vat = #{vr.rate}
+    	").to_f
+    	vr.value += tmp_shipping * str if (vr.rate == str)
+    	vr.value = vr.value.round / 100.0
+    	vat_rates << vr
+    end
+    return vat_rates
   end
 
   def tva
     # country_id 2 is France.
+    # FIXME: EU+international VAT rules should be properly handled
     if (self.supplier.country_id != 2)
       return 0
-    else
-      tmp = total_ht * vat_rate
-      return tmp.round / 100.0
     end
+
+    vat = ActiveRecord::Base.connection.select_value("
+    	select sum( qty * price * vat ) from so_items
+    	where supplier_order_id = #{id}
+    	and product_id is not null
+    ").to_f
+    vat += shipping * shipping_tr unless shipping.nil?
+
+    return vat / 100.0
   end
 
   def total_ttc

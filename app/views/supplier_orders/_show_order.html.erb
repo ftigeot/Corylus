@@ -32,9 +32,11 @@
 </table>
 
 <table class="total">
-<tr><td>Total HT</td> <td class="grey"><%= fmt_price(@order.total_ht) %></td></tr>
-<tr><td>TVA <%= @order.vat_rate %>%</td><td class="grey"><%= fmt_price(@order.tva) %></td></tr>
-<tr><td>Total TTC</td><td class="grey"><%= fmt_price(@order.total_ttc) %></td></tr>
+<tr><td>Total HT</td> <td class="grey"><%= fmt_price(@total_ht) %></td></tr>
+<% for vr in @vat_rates %>
+<tr><td>TVA <%= vr.rate %>%</td><td class="grey"><%= fmt_price(vr.value) %></td></tr>
+<% end %>
+<tr><td>Total TTC</td><td class="grey"><%= fmt_price(@total_ttc) %></td></tr>
 </table>
 </div>
 

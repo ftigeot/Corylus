@@ -40,7 +40,7 @@ xml.contact_email( @contact_email )
 			xml.name( item.description )
 			xml.qty( item.qty ) if item.qty
 			xml.price( item.price ) if item.price
-
+			xml.vat(item.vat) if item.vat
 		end
 	end
 
@@ -50,11 +50,19 @@ xml.contact_email( @contact_email )
 			xml.name( "Frais de port" )
 			xml.qty( 1 )
 			xml.price( @order.shipping )
+			xml.vat( @order.shipping_tr )
 		end
 	end
 
 	if @order.remark
 		xml.comment( @order.remark )
+	end
+
+	for vr in @order.vat_rates
+		xml.vat_subtotal do
+			xml.rate( vr.rate )
+			xml.value( vr.value )
+		end
 	end
 
 end
