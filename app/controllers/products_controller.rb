@@ -125,11 +125,6 @@ class ProductsController < ApplicationController
     render :partial => 'shared/select_product', :layout => false
   end
 
-  def ajax_select_product
-    @selected_product = Product.find(params[:id])
-    render :partial => 'shared/product_selected', :layout => false
-  end
-
   def update
     edit
     old_category = @product.category

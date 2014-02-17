@@ -1,5 +1,5 @@
-<label for="select_product">Produit:</label>
-<select id="select_product">
+<label for="select_product">Product:</label>
+<select id="select_product" onchange="js_product_selected()">
 	<option value="0" selected="selected">&nbsp;</option>
 	<%= options_from_collection_for_select( @products, 'id', 'name') %>
 </select>

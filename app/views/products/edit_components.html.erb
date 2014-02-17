@@ -17,15 +17,42 @@
 
 <%= form_tag :action => 'new_component', :id => @product.id do %>
 	<label for="product_field">Produit sélectionné:</label><div id='product_field'></div>
+	<%= hidden_field 'selected_product', 'id' -%>
 	<%= submit_tag 'Ajouter une ligne produit' -%>
 <% end -%>
 
 <br/>
 
-<label for="ssid">Catégories:</label>
-<select id="ssid" name="ssid">
+<label for="select_category">Catégories:</label>
+<select id="select_category" onchange="js_load_menu2()">
 <option value="0" selected="selected">&nbsp;</option>
 <%= options_from_collection_for_select( @categories, 'id', 'name' ) %>
 </select>
 
-<div id="browse_menu2"/>
+<script type="text/javascript">
+function js_load_menu2() {
+    var xmlhttp = new XMLHttpRequest();
+    var category_id = document.getElementById("select_category").value;
+
+    xmlhttp.onreadystatechange=function() {
+	if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+	    document.getElementById("menu2").innerHTML=xmlhttp.responseText;
+	}
+    }
+
+    xmlhttp.open("GET", "/products/ajax_browse_products?id=" + category_id, true);
+    xmlhttp.send();
+}
+
+function js_product_selected()
+{
+	var product = document.getElementById("select_product");
+	var product_id = product.value;
+	var product_name = product.options[product.selectedIndex].text;
+
+	document.getElementById("product_field").innerHTML = product_name;
+	document.getElementById("selected_product_id").value = product_id;
+}
+</script>
+
+<div id="menu2"/>
