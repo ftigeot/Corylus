@@ -22,7 +22,6 @@ xml.contact_email( @contact_email )
 		xml.postcode( @supplier_address.postcode )
 		xml.city( @supplier_address.city )
 		xml.country( @supplier_address.country.name )
-		xml.vat( @supplier.vat )
 	end
 
 	xml.delivery do
