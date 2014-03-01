@@ -26,4 +26,19 @@
 class ExpenseReport < ActiveRecord::Base
   has_many :er_items
   belongs_to :user
+
+  def total_amount
+    return ActiveRecord::Base.connection.select_value("
+	select sum(i.amount)
+	from er_items i
+	where i.er_id = #{self.id}")
+  end
+
+  def total_vat
+    return ActiveRecord::Base.connection.select_value("
+	select sum(i.vat)
+	from er_items i
+	where i.er_id = #{self.id}")
+  end
+
 end

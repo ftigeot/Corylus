@@ -14,7 +14,6 @@ xml.expense_report do
 		xml.country( @billing_address.country.name )
 	end
 
-	total_cost=0
 	for eri in @er_items
 		xml.item do
 			xml.date eri.expense_date
@@ -22,10 +21,11 @@ xml.expense_report do
 			xml.merchant eri.vendor
 			xml.payment eri.payment_type
 			xml.amount eri.amount
+			xml.vat eri.vat
 		end
-		total_cost += eri.amount
 	end
 
-	xml.total_cost total_cost
+	xml.total_amount @expense_report.total_amount
+	xml.total_vat @expense_report.total_vat
 
 end

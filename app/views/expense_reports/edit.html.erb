@@ -8,7 +8,7 @@
 
 <table>
 <tr><th>Date</th><th>Description</th><th>Merchant</th>
-<th>Type of payment</th><th>Amount</th></tr>
+<th>Type of payment</th><th>Amount</th><th>VAT</th></tr>
 <% total_cost = 0 %>
 
 <% for @eri in @er_items %>
@@ -18,6 +18,7 @@
 <td><%= text_field 'eri[]', 'vendor', :size => 20 %></td>
 <td><%= text_field 'eri[]', 'payment_type', :size => 20 %></td>
 <td><%= text_field 'eri[]', 'amount', :size => 5 %></td>
+<td><%= text_field 'eri[]', 'vat', :size => 4 %></td>
 </tr>
 <% total_cost += @eri.amount %>
 <% end %>

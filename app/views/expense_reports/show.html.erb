@@ -25,7 +25,7 @@
 
 <table>
 <tr><th>Date</th><th>Description</th><th>Merchant</th>
-<th>Type of payment</th><th>Amount</th></tr>
+<th>Type of payment</th><th>Amount</th><th>VAT</th></tr>
 <% total_cost = 0 %>
 
 <% for eri in @er_items %>
@@ -35,14 +35,16 @@
 <td><%= eri.vendor %></td>
 <td><%= eri.payment_type %></td>
 <td><%= fmt_price(eri.amount) %></td>
+<td><%= fmt_price(eri.vat) %></td>
 </tr>
-<% total_cost += eri.amount %>
 <% end %>
 
 </table>
 
 <p>
-<b>Total cost:</b> <%= fmt_price(total_cost) %> (VAT included)<br/>
+<b>Total:</b>
+ <%= fmt_price(@expense_report.total_amount) -%> (including 
+ <%= fmt_price(@expense_report.total_vat) -%> VAT)
 </p>
 
 <p>

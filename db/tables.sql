@@ -352,7 +352,8 @@ create table er_items (
 	description	varchar(40) NOT NULL,
 	vendor		varchar(30) NOT NULL,
 	payment_type	varchar(15) NOT NULL,
-	amount		decimal(5,2) NOT NULL
+	amount		decimal(5,2) NOT NULL,
+	vat		decimal(4,2) NOT NULL DEFAULT 0.0
 );
 
 
