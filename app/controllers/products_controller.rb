@@ -266,10 +266,14 @@ class ProductsController < ApplicationController
     render :controller => 'category', :action => 'list'
   end
 
+  def prepare_build
+    @product = Product.find( params[:id] )
+  end
+
   # Crée un nouveau produit composé et lui attribue un numéro de série
   # La quantité en stock de chaque composant est diminuée
-  def build
-    @product = Product.find( params[:id] )
+  def do_build
+    @product = Product.find( params[:product][:id] )
     @components = @product.components
     @options = @product.options
     @cart = find_cart
@@ -326,6 +330,7 @@ class ProductsController < ApplicationController
     mg = ManufacturedGood.new
     ManufacturedGood.transaction do
       mg.product_id = @product.id
+      mg.serial_number= params[:serial_number][0]
       mg.save!
       # 4. Update inventory levels
       for item in item_list

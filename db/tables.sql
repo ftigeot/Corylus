@@ -134,7 +134,7 @@ create table manufactured_goods (
 	id		serial NOT NULL PRIMARY KEY,
 	product_id	integer NOT NULL REFERENCES products(id),
 	created_on	date NOT NULL default now(),
-	serial_number	char(8) NOT NULL UNIQUE
+	serial_number	varchar(13) NOT NULL UNIQUE
 );
 
 create table mg_items (

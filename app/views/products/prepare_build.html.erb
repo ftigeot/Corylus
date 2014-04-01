@@ -1,0 +1,12 @@
+<h1>Building a new complex product</h1>
+
+<%= form_tag :action => 'do_build' do %>
+
+<%= hidden_field 'product', 'id' %>
+
+<p><label for="serial_number">Serial number</label>
+<%= text_field 'serial_number', '',:maxlength => 13 %></p>
+
+<%= submit_tag "Build" %>
+
+<% end %>
