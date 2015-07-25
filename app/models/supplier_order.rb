@@ -1,5 +1,5 @@
 # Corylus - ERP software
-# Copyright (c) 2005-2014 François Tigeot
+# Copyright (c) 2005-2015 François Tigeot
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -62,7 +62,6 @@ class SupplierOrder < ActiveRecord::Base
     	vr.value = ActiveRecord::Base.connection.select_value("
     		select sum( qty * price * vat ) from so_items
     		where supplier_order_id = #{id}
-    		and product_id is not null
     		and vat = #{vr.rate}
     	").to_f
     	vr.value += tmp_shipping * str if (vr.rate == str)
