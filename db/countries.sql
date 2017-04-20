@@ -1,5 +1,5 @@
 -- Corylus - ERP software
--- Copyright (c) 2005-2014 François Tigeot
+-- Copyright (c) 2005-2017 François Tigeot
 
 -- List of countries
 
@@ -25,5 +25,6 @@ INSERT INTO countries(id,name) VALUES(12,'The Netherlands');
 INSERT INTO countries(id,name) VALUES(13,'Singapore');
 INSERT INTO countries(id,name) VALUES(14,'China');
 INSERT INTO countries(id,name) VALUES(15,'Austria');
+INSERT INTO countries(id,name) VALUES(16,'Finland');
 
 COMMIT;
