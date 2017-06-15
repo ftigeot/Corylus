@@ -26,5 +26,6 @@ INSERT INTO countries(id,name) VALUES(13,'Singapore');
 INSERT INTO countries(id,name) VALUES(14,'China');
 INSERT INTO countries(id,name) VALUES(15,'Austria');
 INSERT INTO countries(id,name) VALUES(16,'Finland');
+INSERT INTO countries(id,name) VALUES(17,'Tanzania');
 
 COMMIT;
