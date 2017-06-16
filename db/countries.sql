@@ -28,4 +28,10 @@ INSERT INTO countries(id,name) VALUES(15,'Austria');
 INSERT INTO countries(id,name) VALUES(16,'Finland');
 INSERT INTO countries(id,name) VALUES(17,'Tanzania');
 
+-- foreign countries are non-EU ones
+CREATE FUNCTION is_foreign_country(int)
+RETURNS boolean
+AS 'SELECT $1 NOT IN (1,2,3,7,11,12,15,16);'
+LANGUAGE sql;
+
 COMMIT;

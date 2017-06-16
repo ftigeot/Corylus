@@ -43,6 +43,20 @@ class Quotation < ActiveRecord::Base
   # Retourne un tableau contenant les taux de tva des différents
   # produits et la somme totale de la tva associée à chaque taux.
   def vat_rates( _shipping = self.shipping )
+    vat_rates = []
+
+    # No VAT for non-EU countries
+    customer_country = self.customer.country_id
+    foreign_country = ActiveRecord::Base.connection.select_value("
+	select is_foreign_country(#{customer_country})
+    ")
+    if (foreign_country)
+      vr = VatRate.new
+      vr.rate = 0
+      vr.value = 0.0
+      vat_rates << vr
+      return vat_rates
+    end
 
     rates = ActiveRecord::Base.connection.select_values("
     	select distinct vat from q_items
@@ -56,7 +70,6 @@ class Quotation < ActiveRecord::Base
       rates.push str
     end
 
-    vat_rates = []
     for r in rates
     	vr = VatRate.new
     	vr.rate = r.to_f
@@ -74,6 +87,13 @@ class Quotation < ActiveRecord::Base
   end
 
   def tva
+    # No VAT for non-EU countries
+    customer_country = self.customer.country_id
+    foreign_country = ActiveRecord::Base.connection.select_value("
+	select is_foreign_country(#{customer_country})
+    ")
+    return 0 if (foreign_country)
+
     vat = ActiveRecord::Base.connection.select_value("
     	select sum( qty * price * vat ) from q_items
     	where quotation_id = #{id}
