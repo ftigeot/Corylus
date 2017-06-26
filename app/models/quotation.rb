@@ -50,7 +50,7 @@ class Quotation < ActiveRecord::Base
     foreign_country = ActiveRecord::Base.connection.select_value("
 	select is_foreign_country(#{customer_country})
     ")
-    if (foreign_country)
+    if (foreign_country == 't')
       vr = VatRate.new
       vr.rate = 0
       vr.value = 0.0
